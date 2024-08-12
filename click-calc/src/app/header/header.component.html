@@ -1,0 +1,77 @@
+<mat-toolbar color="primary">
+  <span>Click Calc</span>
+  <span class="spacer"></span>
+
+  <!-- Math Menu -->
+  <button mat-button [matMenuTriggerFor]="percentageMenu">Percentage</button>
+  <button mat-button [matMenuTriggerFor]="fractionsMenu">Fractions</button>
+  <button mat-button [matMenuTriggerFor]="geometryMenu">Geometry / Trigonometry</button>
+  <button mat-button [matMenuTriggerFor]="numbersMenu">Numbers</button>
+  <button mat-button [matMenuTriggerFor]="tablesMenu">Tables Generators</button>
+  <button mat-button [matMenuTriggerFor]="salaryMenu">Salary Calculators</button>
+
+  <!-- Percentage Sub-Menu -->
+  <mat-menu #percentageMenu="matMenu">
+    <button mat-menu-item>Add a Percentage Calculator</button>
+    <button mat-menu-item>Discount Calculator</button>
+    <button mat-menu-item>Percentage Calculator With Steps</button>
+    <button mat-menu-item>Subtract a Percentage Calculator</button>
+  </mat-menu>
+
+  <!-- Fractions Sub-Menu -->
+  <mat-menu #fractionsMenu="matMenu">
+    <button mat-menu-item>Decimal to Ratio Calculator</button>
+    <button mat-menu-item>Percentage to Ratio Calculator</button>
+  </mat-menu>
+
+  <!-- Geometry / Trigonometry Sub-Menu -->
+  <mat-menu #geometryMenu="matMenu">
+    <a routerLink="/trigo/degrees-to-radians" mat-menu-item>Degrees to Radians</a>
+    <a routerLink="/trigo/radians-to-degrees" mat-menu-item>Radians to Degrees</a>
+    <button mat-menu-item>Sine Calculator</button>
+    <button mat-menu-item>Cosine Calculator</button>
+    <button mat-menu-item>Tangent Calculator</button>
+    <button mat-menu-item>Complementary Angles</button>
+    <button mat-menu-item>Supplementary Angles</button>
+    <button mat-menu-item>Reflex or Conjugate Angles</button>
+    <button mat-menu-item>Reference Angles</button>
+    <button mat-menu-item>Right Triangle Calculator</button>
+    <button mat-menu-item>Is a Triangular Number?</button>
+  </mat-menu>
+
+  <!-- Numbers Sub-Menu -->
+  <mat-menu #numbersMenu="matMenu">
+    <button mat-menu-item>Big Numbers Calculator</button>
+    <button mat-menu-item>Convert to Scientific Notation Calculator</button>
+    <button mat-menu-item>Is a Multiple of Calculator</button>
+    <button mat-menu-item>Long Division</button>
+    <button mat-menu-item>Pi Calculator</button>
+    <button mat-menu-item>Quotient and Remainder</button>
+    <button mat-menu-item>Round to The Nearest Calculator</button>
+    <button mat-menu-item>Significant Figures Counter</button>
+    <button mat-menu-item>What Numbers Add Up to Calculator</button>
+    <button mat-menu-item>Words to Number Calculator</button>
+    <button mat-menu-item>Zeros Counter</button>
+  </mat-menu>
+
+  <!-- Tables Generators Sub-Menu -->
+  <mat-menu #tablesMenu="matMenu">
+    <button mat-menu-item>Addition</button>
+    <button mat-menu-item>Division</button>
+    <button mat-menu-item>Multiplication</button>
+    <button mat-menu-item>Subtraction</button>
+  </mat-menu>
+
+  <!-- Salary Calculators Sub-Menu -->
+  <mat-menu #salaryMenu="matMenu">
+    <button mat-menu-item>Annual Salary to Hourly Calculator</button>
+  </mat-menu>
+
+  <!-- Miscellaneous Sub-Menu -->
+  <mat-menu #miscellaneousMenu="matMenu">
+    <button mat-menu-item>CHMOD Generator</button>
+    <button mat-menu-item>Morse Code Translator</button>
+    <button mat-menu-item>Scientific Calculator</button>
+  </mat-menu>
+
+</mat-toolbar>

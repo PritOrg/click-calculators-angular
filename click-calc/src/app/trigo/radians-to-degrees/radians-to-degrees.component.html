@@ -1,0 +1,62 @@
+<div class="converter-container">
+    <h1>Radians to Degrees Converter</h1>
+    <p>π radians equals 180°</p>
+  
+    <div class="input-section">
+      <mat-form-field appearance="fill">
+        <mat-label>Angle:</mat-label> <label for="angle"></label>
+          <input matInput type="text" [(ngModel)]="angle" (input)="calculateDegrees()" id="angle" />
+          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    
+        </mat-form-field>
+    </div>
+  
+    <div class="answer-section">
+      <h2>Answer:</h2>
+      <p>{{ angle }} rad = {{ degrees }}</p>
+    </div>
+  
+    <div class="conversion-container">
+      <div class="step-by-step-solution">
+        <h2>Step-by-Step Solution</h2>
+        <p>
+          Given that π rad is equal to 180°, we can write the following 
+          <span class="highlight">radians to degrees conversion formula</span>:
+        </p>
+        <div class="formula-box">
+          <p>α in degrees = α in π radians × 180/π, OR</p>
+          <p>α° = α rad × 180/π</p>
+        </div>
+        <p>
+          Plugging the given angle value, in radians, in the previous formula, we get:
+        </p>
+        <div class="calculation-box">
+          <p>α° = ({{ angle }} × 180/π) = {{ degrees }}</p>
+        </div>
+      </div>
+  
+      <h2>How to Convert Radians to Degrees - Step-by-step Solution</h2>
+      <p>
+        A way to convert from radians to degrees is to use the following formula:
+      </p>
+      <div class="formula-box">
+        <p>degree measure = (radian measure × 180)/π</p>
+      </div>
+      <h3>Steps</h3>
+      <div class="steps-container">
+        <div class="step">
+          <strong>Step 1:</strong> Plug the angle value, in radians, in the formula above:
+          <div class="calculation-box">
+            <p>degree measure = ({{ angle }} × 180)/π</p>
+          </div>
+        </div>
+        <div class="step">
+          <strong>Step 2:</strong> Multiply the terms:
+          <div class="calculation-box">
+            <p>degree measure = {{ angle }} × 180/π = {{ degrees }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

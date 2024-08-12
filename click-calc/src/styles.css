@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input[type="number"] {
+  -moz-appearance: textfield; /* For Firefox */
+  -webkit-appearance: none; /* For Chrome, Safari, and Opera */
+  appearance: none; /* For other modern browsers */
+}
+
+/* For older versions of WebKit browsers */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.converter-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  h1, h2 {
+    color: #00796b;
+  }
+  mat-form-field {
+    flex: 1;
+  }
+  
+  .input-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .answer-section {
+    background-color: #fff3e0;
+    border: 1px solid #ffcc80;
+    padding: 15px;
+    border-radius: 5px;
+  }
+  
+  .steps-section {
+    margin-top: 20px;
+  }
+  
+  .formula-box, .calculation-box {
+    background-color: #fff3e0;
+    border: 1px solid #ffcc80;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px 0;
+  }
+  
