@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class RadiansToDegreesComponent {
   angle: string = 'π';
-  degrees: string = '180';
+  degrees: string = '180°';
 
   calculateDegrees() {
     try {

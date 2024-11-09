@@ -1,6 +1,64 @@
-<app-header></app-header>
-<div class="main-content">
-    <router-outlet></router-outlet>
-</div>
+<div class="app-wrapper">
 
-<app-footer></app-footer>
+  <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #sidenav mode="over" class="mobile-sidenav">
+        <!-- Mobile Menu Content -->
+        <mat-nav-list>
+          <div class="sidenav-header">
+            <span class="mobile-logo">Click Calc</span>
+            <button mat-icon-button (click)="sidenav.close()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+    
+          <!-- Percentage -->
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>percent</mat-icon>
+                <span>Percentage</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+              <a mat-list-item routerLink="/percentage/add" (click)="sidenav.close()">
+                Add a Percentage Calculator
+              </a>
+              <a mat-list-item routerLink="/percentage/discount-calc" (click)="sidenav.close()">
+                Discount Calculator
+              </a>
+              <a mat-list-item (click)="sidenav.close()">
+                Percentage Calculator With Steps
+              </a>
+              <a mat-list-item (click)="sidenav.close()">
+                Subtract a Percentage Calculator
+              </a>
+            </mat-nav-list>
+          </mat-expansion-panel>
+    
+          <!-- Repeat similar structure for other menu items -->
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon>functions</mat-icon>
+                <span>Fractions</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-nav-list>
+              <a mat-list-item (click)="sidenav.close()">Decimal to Ratio Calculator</a>
+              <a mat-list-item (click)="sidenav.close()">Percentage to Ratio Calculator</a>
+            </mat-nav-list>
+          </mat-expansion-panel>
+    
+          <!-- Add remaining menu items following the same pattern -->
+        </mat-nav-list>
+      </mat-sidenav>
+    
+      <mat-sidenav-content>
+        <app-header [sidenav]="sidenav"></app-header>
+        <div class="main-content">
+          <router-outlet></router-outlet>
+        </div>
+        <app-footer></app-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

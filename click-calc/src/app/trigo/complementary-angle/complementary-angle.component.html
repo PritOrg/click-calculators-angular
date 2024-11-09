@@ -1,0 +1,131 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Complementary Angle Calculator</h1>
+      <div class="description">
+        <mat-icon>info</mat-icon>
+        <span>Calculate the complementary angle in degrees or radians.</span>
+      </div>
+    </div>
+  
+    <div class="input-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Angle</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="angleInput" 
+          (input)="calculateComplementaryAngle()" 
+          placeholder="Enter angle (e.g., 30, pi/3)" />
+      </mat-form-field>
+  
+      <mat-radio-group [(ngModel)]="unit" (change)="calculateComplementaryAngle()">
+        <mat-radio-button value="degrees">Degrees (°)</mat-radio-button>
+        <mat-radio-button value="radians">Radians (rad)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  
+    <div class="result-section" *ngIf="complementaryAngleDegrees !== null || complementaryAngleRadians !== null">
+      <mat-card class="result-card">
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Answer</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Short Answer:</strong> The complementary angle of <span class="final-value">{{angleInput}}° is {{unit === 'degrees' ? complementaryAngleDegrees : complementaryAngleRadians | number: '1.0-2'}}</span>.</p>
+          <p><strong>Detailed Answer:</strong> {{ detailedAnswer }}</p>
+        </mat-card-content>
+      </mat-card>
+      
+      <div class="svg-container" style="background-color: #08090A; padding: 20px; border-radius: 10px;">
+        <svg width="300" height="300" viewBox="0 0 300 300">
+          <!-- Circle representing the unit circle -->
+          <circle cx="150" cy="150" r="120" stroke="#456990" stroke-width="4" fill="none" />
+          
+          <!-- Vertical line for reference -->
+          <line x1="150" y1="150" x2="150" y2="30" stroke="#D7BCE8" stroke-width="2" />
+          
+          <!-- Angle line -->
+          <line 
+            x1="150" 
+            y1="150" 
+            [attr.x2]="x2" 
+            [attr.y2]="y2" 
+            stroke="#F45B69" 
+            stroke-width="2" 
+            stroke-linecap="round"
+          />
+          
+          <!-- Angle text -->
+          <text x="160" y="50" fill="#DCFDD9" font-size="16" font-weight="bold">{{ angleInput }}°</text>
+          
+          <!-- Complementary angle text -->
+          <text 
+            [attr.x]="labelX" 
+            [attr.y]="labelY" 
+            fill="#456990" 
+            font-size="16" 
+            font-weight="bold"
+          >
+            {{ unit === 'degrees' ? complementaryAngleDegrees : complementaryAngleRadians | number: '1.0-2' }}°
+          </text>
+          
+          <!-- Labels for angle lines -->
+          <text x="150" y="180" fill="#D7BCE8" font-size="14" text-anchor="middle">Angle</text>
+          <text [attr.x]="labelX" [attr.y]="labelY + 20" fill="#F45B69" font-size="14" text-anchor="middle">Complementary</text>
+        </svg>
+      </div>
+      
+      
+    </div>
+  
+    <mat-expansion-panel class="steps-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>school</mat-icon>
+            Step-by-Step Solution
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      
+        <div class="solution-content">
+          <h2>Complementary Angles</h2>
+          <p>Complementary angles are two angles whose sum is 90 degrees (or π/2 radians). To find the complement of an angle, you can use the following formulas:</p>
+          
+          <h3>For Radians</h3>
+          <p>To find the complement of an angle, say '<span class="destacado">x</span>', expressed in radians, use the formula:</p>
+          <div class="formula-card">
+            <p><span class="formula">Complement of <span class="destacado">x</span><sup><small>rad</small></sup> = π/2 - <span class="destacado">x</span></span></p>
+          </div>
+          <p>Example 1: The complementary angle of 1/3π radian = π/2 - 1/3π = π/6<sup>rad</sup>.</p>
+      
+          <h3>For Degrees</h3>
+          <p>To find the complement of an angle, say '<span class="destacado">y</span>', expressed in degrees, use the formula:</p>
+          <div class="formula-card">
+            <p><span class="formula">Complement of <span class="destacado">y</span>° = 90° - <span class="destacado">y</span></span></p>
+          </div>
+          <p>Example 2: The complementary angle of 30° = 90° - 30° = 60°.</p>
+      
+          <h2>Radians to Degrees Conversion Formula</h2>
+          <p>To convert radians to degrees, we use the following formula:</p>
+          <div class="formula-card">
+            <p>Degrees = Radians × (180 / π)</p>
+          </div>
+      
+          <mat-vertical-stepper>
+            <mat-step>
+              <ng-template matStepLabel>Apply the Conversion Formula</ng-template>
+              <div class="calculation-box">
+                <p>Degrees = ({{ angleInput }} × 180/π)</p>
+              </div>
+            </mat-step>
+      
+            <mat-step>
+              <ng-template matStepLabel>Calculate the Result</ng-template>
+              <div class="formula-box">
+                <p>{{ angleInput }} × (180 / π) = {{ unit === 'degrees' ? complementaryAngleDegrees : complementaryAngleRadians | number: '1.0-2' }}°</p>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+        </div>
+      </mat-expansion-panel>
+      
+  </div>
+  

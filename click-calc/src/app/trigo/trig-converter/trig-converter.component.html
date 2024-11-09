@@ -1,0 +1,72 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Trigonometric Converter</h1>
+      <div class="description">
+        <mat-icon>trending_up</mat-icon>
+        <span>Convert between different trigonometric functions.</span>
+      </div>
+    </div>
+  
+    <div class="input-section">
+      <!-- Angle Input -->
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Angle</mat-label>
+        <input 
+          matInput 
+          type="number" 
+          [(ngModel)]="angle" 
+          id="angleInput" 
+          placeholder="Enter angle"
+          (input)="calculateConversion()"
+        />
+      </mat-form-field>
+  
+      <!-- Select Angle Unit (Degrees or Radians) -->
+      <mat-radio-group [(ngModel)]="angleUnit" class="unit-selection" (change)="calculateConversion()">
+        <mat-radio-button value="degrees">Degrees</mat-radio-button>
+        <mat-radio-button value="radians">Radians</mat-radio-button>
+      </mat-radio-group>
+  
+      <!-- Select Initial Function -->
+      <mat-form-field appearance="outline">
+        <mat-label>From Function</mat-label>
+        <mat-select [(ngModel)]="initialFunction" (selectionChange)="calculateConversion()">
+          <mat-option value="sin">Sin</mat-option>
+          <mat-option value="cos">Cos</mat-option>
+          <mat-option value="tan">Tan</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Select Target Function -->
+      <mat-form-field appearance="outline">
+        <mat-label>To Function</mat-label>
+        <mat-select [(ngModel)]="targetFunction" (selectionChange)="calculateConversion()">
+          <mat-option value="sin">Sin</mat-option>
+          <mat-option value="cos">Cos</mat-option>
+          <mat-option value="tan">Tan</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <!-- Calculate Button -->
+      <button mat-raised-button color="primary" (click)="calculateConversion()">
+        <mat-icon>autorenew</mat-icon>
+        Convert
+      </button>
+    </div>
+  
+    <!-- Display Result -->
+    <div class="result-section" *ngIf="conversionResult !== null">
+      <mat-card class="result-card">
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Conversion Result</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="result-formula">
+            <p>{{ initialFunction | uppercase }}({{ angle }} {{ angleUnit }}) = <span class="final-value">{{ conversionResult | number:'1.4-4' }} ({{ targetFunction | uppercase }})</span></p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  

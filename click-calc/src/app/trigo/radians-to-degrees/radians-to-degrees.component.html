@@ -1,62 +1,93 @@
-<div class="converter-container">
+<div class="converter-container fade-in">
+  <div class="calculator-header">
     <h1>Radians to Degrees Converter</h1>
-    <p>π radians equals 180°</p>
-  
-    <div class="input-section">
-      <mat-form-field appearance="fill">
-        <mat-label>Angle:</mat-label> <label for="angle"></label>
-          <input matInput type="text" [(ngModel)]="angle" (input)="calculateDegrees()" id="angle" />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    
-        </mat-form-field>
-    </div>
-  
-    <div class="answer-section">
-      <h2>Answer:</h2>
-      <p>{{ angle }} rad = {{ degrees }}</p>
-    </div>
-  
-    <div class="conversion-container">
-      <div class="step-by-step-solution">
-        <h2>Step-by-Step Solution</h2>
-        <p>
-          Given that π rad is equal to 180°, we can write the following 
-          <span class="highlight">radians to degrees conversion formula</span>:
-        </p>
-        <div class="formula-box">
-          <p>α in degrees = α in π radians × 180/π, OR</p>
-          <p>α° = α rad × 180/π</p>
-        </div>
-        <p>
-          Plugging the given angle value, in radians, in the previous formula, we get:
-        </p>
-        <div class="calculation-box">
-          <p>α° = ({{ angle }} × 180/π) = {{ degrees }}</p>
-        </div>
-      </div>
-  
-      <h2>How to Convert Radians to Degrees - Step-by-step Solution</h2>
-      <p>
-        A way to convert from radians to degrees is to use the following formula:
-      </p>
-      <div class="formula-box">
-        <p>degree measure = (radian measure × 180)/π</p>
-      </div>
-      <h3>Steps</h3>
-      <div class="steps-container">
-        <div class="step">
-          <strong>Step 1:</strong> Plug the angle value, in radians, in the formula above:
-          <div class="calculation-box">
-            <p>degree measure = ({{ angle }} × 180)/π</p>
-          </div>
-        </div>
-        <div class="step">
-          <strong>Step 2:</strong> Multiply the terms:
-          <div class="calculation-box">
-            <p>degree measure = {{ angle }} × 180/π = {{ degrees }}</p>
-          </div>
-        </div>
-      </div>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>Convert an angle in radians to degrees using the formula where π radians equals 180°.</span>
     </div>
   </div>
-  
+
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Angle in Radians</mat-label>
+      <input matInput [(ngModel)]="angle" (input)="calculateDegrees()" placeholder="Enter angle in radians"
+        id="angle" />
+      <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="calculateDegrees()">
+      <mat-icon>calculate</mat-icon>
+      Convert
+    </button>
+  </div>
+
+  <div class="result-section" *ngIf="degrees !== null">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>check_circle</mat-icon>
+        <mat-card-title>Answer</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="result-formula">
+          <p>{{ angle }} rad =
+            <span class="final-value">
+              {{ degrees }}
+            </span>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-expansion-panel class="steps-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>school</mat-icon>
+        Step-by-Step Solution
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="solution-content">
+      <h2>Radians to Degrees Conversion Formula</h2>
+      <p>To convert radians to degrees, we use the following formula:</p>
+      <div class="formula-card">
+        <p>Degrees = Radians × (180 / π)</p>
+      </div>
+
+      <mat-vertical-stepper>
+        <mat-step>
+          <ng-template matStepLabel>Apply the Conversion Formula</ng-template>
+          <div class="calculation-box">
+            <p>Degrees = ({{ angle }} × 180/π)</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Calculate the Result</ng-template>
+          <div class="formula-box">
+            <p>{{ angle }} × (180 / π) = {{ degrees }}°</p>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel class="examples-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>tips_and_updates</mat-icon>
+        Additional Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="solution-content">
+      <h2>Common Angle Conversions</h2>
+      <div class="formula-box">
+        <p>π radians = 180° </p>
+        <p>π/2 radians = 90° </p>
+        <p>π/3 radians = 60° </p>
+        <p>π/4 radians = 45° </p>
+        <p>π/6 radians = 30° </p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</div>

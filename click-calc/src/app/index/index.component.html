@@ -1,0 +1,12 @@
+<div class="calculator-content">
+  <section *ngFor="let section of calculatorSections" class="calculator-section">
+    <h2 class="section-title">{{ section.title }}</h2>
+    <div class="calculator-grid">
+      <div *ngFor="let item of section.items" class="calculator-item">
+        <h3 class="calculator-title">{{ item.title }}</h3>
+        <p class="calculator-description">{{ item.description }}</p>
+        <a [routerLink]="item.link" class="calculator-link">Try the {{ item.title }}</a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,105 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1 class="title">Trigonometric Calculator</h1>
+      <div class="description">
+        <mat-icon>info</mat-icon>
+        <span>Calculate trigonometric values of a given angle using functions such as sin, cos, tan, etc.</span>
+      </div>
+    </div>
+  
+    <div class="input-section">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Angle</mat-label>
+        <input matInput type="number" [(ngModel)]="angle" (input)="onAngleChange()" placeholder="Enter angle" />
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Trigonometric Function</mat-label>
+        <mat-select [(ngModel)]="trigFunction" (selectionChange)="onFunctionChange()">
+          <mat-option value="sin">Sin</mat-option>
+          <mat-option value="cos">Cos</mat-option>
+          <mat-option value="tan">Tan</mat-option>
+          <mat-option value="cot">Cot</mat-option>
+          <mat-option value="sec">Sec</mat-option>
+          <mat-option value="cosec">Cosec</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-radio-group [(ngModel)]="mode" (change)="onModeChange()" class="mode-selector">
+        <mat-radio-button value="degree">Degree</mat-radio-button>
+        <mat-radio-button value="radian">Radian</mat-radio-button>
+      </mat-radio-group>
+  
+      <button mat-raised-button color="primary" (click)="calculateTrig()" class="calculate-button">
+        <mat-icon>calculate</mat-icon> Calculate
+      </button>
+    </div>
+  
+    <div class="result-section" *ngIf="result !== null">
+      <mat-card class="result-card">
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Result</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="result-formula">
+            <p>{{ trigFunction | uppercase }}({{ angle }}°) = <strong class="final-value">{{ result | number:'1.4-4' }}</strong></p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <mat-expansion-panel class="steps-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>table_view</mat-icon>
+          Trigonometric Table
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <table mat-table [dataSource]="generateTrigTable()" class="mat-elevation-z8 trig-table">
+        <ng-container matColumnDef="degree">
+          <th mat-header-cell *matHeaderCellDef>Degree</th>
+          <td mat-cell *matCellDef="let element">{{ element.degree }}°</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="radian">
+          <th mat-header-cell *matHeaderCellDef>Radian</th>
+          <td mat-cell *matCellDef="let element">{{ element.radian }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="sin">
+          <th mat-header-cell *matHeaderCellDef>Sin</th>
+          <td mat-cell *matCellDef="let element">{{ element.sin }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cos">
+          <th mat-header-cell *matHeaderCellDef>Cos</th>
+          <td mat-cell *matCellDef="let element">{{ element.cos }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="tan">
+          <th mat-header-cell *matHeaderCellDef>Tan</th>
+          <td mat-cell *matCellDef="let element">{{ element.tan }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cot">
+          <th mat-header-cell *matHeaderCellDef>Cot</th>
+          <td mat-cell *matCellDef="let element">{{ element.cot }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="sec">
+          <th mat-header-cell *matHeaderCellDef>Sec</th>
+          <td mat-cell *matCellDef="let element">{{ element.sec }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="cosec">
+          <th mat-header-cell *matHeaderCellDef>Cosec</th>
+          <td mat-cell *matCellDef="let element">{{ element.cosec }}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="['degree', 'radian', 'sin', 'cos', 'tan', 'cot', 'sec', 'cosec']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['degree', 'radian', 'sin', 'cos', 'tan', 'cot', 'sec', 'cosec']"></tr>
+      </table>
+    </mat-expansion-panel>
+  </div>

@@ -1,9 +1,21 @@
 import { Component } from '@angular/core';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-degrees-to-radians',
   templateUrl: './degrees-to-radians.component.html',
-  styleUrls: ['./degrees-to-radians.component.css'],
+  styleUrls: ['./degrees-to-radians.component.css'],animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        animate('300ms', style({ opacity: 0 })),
+      ]),
+    ]),
+  ],
 })
 export class DegreesToRadiansComponent {
   angle: number = 180;

@@ -1,0 +1,91 @@
+<div class="converter-container fade-in">
+  <div class="calculator-header">
+    <h1>Math Table Generator</h1>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>Generate customizable math tables for practice</span>
+    </div>
+  </div>
+
+  <!-- Selection Menu -->
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Operation</mat-label>
+      <mat-select [(ngModel)]="selectedOperation" (selectionChange)="onOperationChange()">
+        <mat-option value="addition">Addition</mat-option>
+        <mat-option value="subtraction">Subtraction</mat-option>
+        <mat-option value="multiplication">Multiplication</mat-option>
+        <mat-option value="division">Division</mat-option>
+        <mat-option value="mix">Mix All</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Input Fields -->
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Base Number</mat-label>
+      <input matInput type="number" [(ngModel)]="baseNumber" placeholder="Enter base number" />
+      <mat-icon matSuffix class="suffix-icon">looks_one</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Number of Lines</mat-label>
+      <input matInput type="number" [(ngModel)]="numberOfLines" placeholder="Enter number of lines" />
+      <mat-icon matSuffix class="suffix-icon">format_list_numbered</mat-icon>
+    </mat-form-field>
+
+    <!-- Random Numbers Checkbox -->
+    <div class="random-numbers-section">
+      <mat-checkbox [(ngModel)]="randomNumbers">Generate random numbers</mat-checkbox>
+      <mat-form-field appearance="outline" *ngIf="randomNumbers">
+        <mat-label>Random numbers start at:</mat-label>
+        <input matInput type="number" [(ngModel)]="randomStart" />
+        <mat-icon matSuffix class="suffix-icon">shuffle</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" (click)="generateTable()">
+        <mat-icon>table_chart</mat-icon>
+        Generate Table
+      </button>
+      <button mat-raised-button color="accent" (click)="toggleAnswers()">
+        <mat-icon>{{ showAnswers ? 'visibility_off' : 'visibility' }}</mat-icon>
+        {{ showAnswers ? 'Hide Answers' : 'Show Answers' }}
+      </button>
+      <button mat-raised-button color="warn" (click)="regenerateTable()">
+        <mat-icon>autorenew</mat-icon>
+        Regenerate Table
+      </button>
+    </div>
+  </div>
+
+  <!-- Display Generated Table -->
+  <div class="table-section" *ngIf="generatedTable.length">
+    <h2>Generated Table</h2>
+    <table mat-table [dataSource]="generatedTable" class="mat-elevation-z8">
+      <!-- Operation Column -->
+      <ng-container matColumnDef="operation">
+        <th mat-header-cell *matHeaderCellDef> Operation </th>
+        <td mat-cell *matCellDef="let row">
+          {{ baseNumber }} {{ row.operator }} {{ row.num }} =
+        </td>
+      </ng-container>
+
+      <!-- Input Result Column -->
+      <ng-container matColumnDef="input">
+        <th mat-header-cell *matHeaderCellDef> Enter Result </th>
+        <td mat-cell *matCellDef="let row">
+          <input matInput class="answer-input" type="number" [(ngModel)]="row.userInput" (ngModelChange)="validateInput(row)" [ngClass]="{ 'correct': row.isCorrect, 'incorrect': row.isCorrect === false }" [readonly]="showAnswers" />
+          <mat-icon *ngIf="row.isCorrect" color="primary">check</mat-icon>
+          <mat-icon *ngIf="row.isCorrect === false" color="warn">close</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row Definition -->
+      <tr mat-header-row *matHeaderRowDef="['operation', 'input']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['operation', 'input'];"></tr>
+    </table>
+  </div>
+</div>

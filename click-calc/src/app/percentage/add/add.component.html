@@ -1,0 +1,117 @@
+<div class="converter-container fade-in">
+  <div class="calculator-header">
+    <h1>Add a Percentage Calculator</h1>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>Calculate the final value after adding or subtracting a percentage from an initial value.</span>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Initial Value</mat-label>
+      <input 
+        matInput 
+        type="number" 
+        [(ngModel)]="initialValue" 
+        id="initialValue" 
+        (input)="calculateFinalValue()"
+        placeholder="Enter initial value"
+      />
+      <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Operation</mat-label>
+      <mat-select [(ngModel)]="operation" (selectionChange)="calculateFinalValue()">
+        <mat-option value="add">Add (+)</mat-option>
+        <mat-option value="subtract">Subtract (-)</mat-option>
+      </mat-select>
+      <mat-icon matSuffix class="suffix-icon">calculate</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Percentage</mat-label>
+      <input 
+        matInput 
+        type="number" 
+        [(ngModel)]="percentage" 
+        id="percentage" 
+        (input)="calculateFinalValue()"
+        placeholder="Enter percentage"
+      />
+      <mat-icon matSuffix class="suffix-icon">percent</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="calculateFinalValue()">
+      <mat-icon>calculate</mat-icon>
+      Calculate
+    </button>
+  </div>
+
+  <div class="result-section" *ngIf="finalValue !== null">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>check_circle</mat-icon>
+        <mat-card-title>Result</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="result-formula">
+          <span>{{ initialValue | number:'1.0-2' }} {{ operation === 'add' ? '+' : '-' }} {{ percentage | number:'1.0-2' }}% = </span>
+          <span class="final-value">{{ finalValue | number:'1.0-2' }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <mat-expansion-panel class="steps-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>lightbulb</mat-icon>
+        View Step-by-Step Solution
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="solution-content">
+      <h2>Formula and Steps for Calculation</h2>
+      
+      <div class="formula-card">
+        <p>Formula Used: Final Value = Initial Value × (1 ± Percentage/100)</p>
+      </div>
+
+      <mat-vertical-stepper>
+        <mat-step>
+          <ng-template matStepLabel>Step 1: Determine the Operation</ng-template>
+          <div class="calculation-box">
+            <p>Identify if you need to add or subtract the percentage from the initial value based on the selected operation.</p>
+            <p>Operation selected: {{ operation === 'add' ? 'Addition (+)' : 'Subtraction (-)' }}</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 2: Convert Percentage to Decimal</ng-template>
+          <div class="calculation-box">
+            <p>Convert the given percentage ({{ percentage }}%) to decimal form by dividing it by 100.</p>
+            <p>{{ percentage }}% ÷ 100 = {{ percentage / 100 | number:'1.0-4' }}</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 3: Calculate the Percentage Amount</ng-template>
+          <div class="calculation-box">
+            <p>Multiply the initial value ({{ initialValue | number:'1.0-2' }}) by the decimal form of the percentage to find the amount to add or subtract.</p>
+            <p>{{ initialValue | number:'1.0-2' }} × {{ percentage / 100 | number:'1.0-4' }} = {{ initialValue * (percentage / 100) | number:'1.0-2' }}</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 4: Calculate Final Result</ng-template>
+          <div class="formula-box">
+            <p>Finally, apply the calculated amount by either adding or subtracting it from the initial value to get the final result.</p>
+            <p>{{ initialValue | number:'1.0-2' }} {{ operation === 'add' ? '+' : '-' }} {{ initialValue * (percentage / 100) | number:'1.0-2' }} = <strong>{{ finalValue | number:'1.0-2' }}</strong></p>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-expansion-panel>
+</div>
