@@ -1,0 +1,62 @@
+/* SVG Styles */
+.triangle-svg {
+    transition: all 0.3s ease;
+  }
+  
+  .triangle-svg.dark-theme {
+    filter: brightness(0.8);
+  }
+  
+  .triangle-shape {
+    transition: fill 0.3s ease;
+  }
+  
+  .side-label, .hypotenuse-label {
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+  }
+  
+  .hypotenuse-line {
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+  }
+  
+  .angle-highlight {
+    transition: fill-opacity 0.3s ease;
+  }
+  
+  .angle-label rect {
+    transition: fill-opacity 0.3s ease;
+  }
+  
+  .right-angle-marker {
+    transition: opacity 0.3s ease;
+  }
+  
+  /* Interactive Elements */
+  .mat-card-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 16px;
+  }
+  
+  /* Tooltip Styles */
+  .mat-tooltip {
+    font-size: 14px;
+  }
+  
+  /* Animation Classes */
+  @keyframes drawLine {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }

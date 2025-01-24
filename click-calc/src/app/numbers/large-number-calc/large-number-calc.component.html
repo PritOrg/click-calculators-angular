@@ -1,0 +1,84 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>Large Number Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>
+                Perform basic arithmetic operations on whole numbers larger than
+                <code>2<sup>53</sup> - 1</code> using this calculator.
+            </span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section row">
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>First Number (a)</mat-label>
+            <input matInput type="number" [(ngModel)]="firstNumber" (ngModelChange)="calculate()"
+                placeholder="Enter first large number" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Second Number (b)</mat-label>
+            <input matInput type="number" [(ngModel)]="secondNumber" (ngModelChange)="calculate()"
+                placeholder="Enter second large number" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Select Operation</mat-label>
+            <mat-select [(ngModel)]="operation" (selectionChange)="calculate()">
+                <mat-option value="+">Addition (a + b)</mat-option>
+                <mat-option value="-">Subtraction (a - b)</mat-option>
+                <mat-option value="*">Multiplication (a * b)</mat-option>
+                <mat-option value="/">Division (a / b)</mat-option>
+                <mat-option value="^">Exponentiation (a ^ b)</mat-option>
+                <mat-option value="%">Modulus (a % b)</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- Result Section -->
+    <div class="result-section" >
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Result</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="result-formula">
+                <p>
+                    <strong>Calculation:</strong> {{ firstNumber }} {{ operation }} {{ secondNumber }}
+                </p>
+                <p>
+                    <strong>Result:</strong>
+                    <span class="final-value" [class.collapsed]="isCollapsed" (click)="toggleCollapse()" class="final-value">
+                        {{result!.length > 30 && isCollapsed ? result!.slice(0, 30) + '...' : result }}
+                    </span>
+                </p>
+                <p *ngIf="isCollapsed">(Click to expand)</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- Help Section -->
+    <mat-expansion-panel class="help-panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>help</mat-icon>
+                Help and Supported Operations
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="help-content">
+            <h2>Supported Operations</h2>
+            <ul>
+                <li><code>a + b</code>: Performs addition.</li>
+                <li><code>a - b</code>: Performs subtraction.</li>
+                <li><code>a * b</code>: Performs multiplication.</li>
+                <li><code>a / b</code>: Performs division.</li>
+                <li><code>a ^ b</code>: Performs exponentiation. Returns 0 if <code>b</code> is less than 0.</li>
+                <li><code>a % b</code>: Returns the remainder of division.</li>
+                <li><code>√a</code>: Calculates the square root of <code>a</code>.</li>
+                <li><code>a!</code>: Calculates the factorial of <code>a</code>.</li>
+            </ul>
+        </div>
+    </mat-expansion-panel>
+</div>

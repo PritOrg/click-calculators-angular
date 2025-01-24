@@ -1,4 +1,5 @@
 <mat-toolbar color="primary" class="header-toolbar">
+  
   <div class="logo-section">
     <button *ngIf="isMobile" mat-icon-button (click)="toggleSidenav()" class="menu-icon">
       <mat-icon>menu</mat-icon>
@@ -14,7 +15,7 @@
       <span>Percentage</span>
     </button>
     
-    <button mat-button [matMenuTriggerFor]="fractionsMenu">
+    <button mat-button routerLink="/ratio-calculator">
       <mat-icon>functions</mat-icon>
       <span>Fractions</span>
     </button>
@@ -38,12 +39,13 @@
       <mat-icon>payments</mat-icon>
       <span >Salary</span>
     </button>
+    <mat-slide-toggle (change)="toggleTheme()" [checked]="isDarkMode" color="accent">
+      <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
+      <span>{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
+    </mat-slide-toggle>
   </ng-container>
 
   <ng-template #mobileMenu>
-    <button mat-icon-button [matMenuTriggerFor]="mobileOptionsMenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
   </ng-template>
 
   <!-- Menu Definitions -->
@@ -52,10 +54,6 @@
     <button mat-menu-item routerLink="/percentage/discount-calc">Discount Calculator</button>
   </mat-menu>
 
-  <mat-menu #fractionsMenu="matMenu">
-    <button mat-menu-item>Decimal to Ratio Calculator</button>
-    <button mat-menu-item>Percentage to Ratio Calculator</button>
-  </mat-menu>
 
   <mat-menu #geometryMenu="matMenu">
     <button mat-menu-item routerLink="/trigo/degrees-to-radians">Degrees to Radians</button>
@@ -63,18 +61,18 @@
     <button mat-menu-item routerLink="/trigo/convertor">Trigo Convertors</button>
     <button mat-menu-item routerLink="/trigo/calculator">Trigo Calculator</button>
     <button mat-menu-item routerLink="/trigo/complementary-angle">Complementary Angles</button>
-    <button mat-menu-item>Supplementary Angles</button>
+    <button mat-menu-item >Supplementary Angles</button>
     <button mat-menu-item>Reflex or Conjugate Angles</button>
     <button mat-menu-item>Reference Angles</button>
-    <button mat-menu-item>Right Triangle Calculator</button>
+    <button mat-menu-item routerLink="/trigo/rihght-triangle" >Right Triangle Calculator</button>
     <button mat-menu-item>Is a Triangular Number?</button>
   </mat-menu>
 
   <mat-menu #numbersMenu="matMenu">
-    <button mat-menu-item>Big Numbers Calculator</button>
-    <button mat-menu-item>Convert to Scientific Notation Calculator</button>
+    <button mat-menu-item routerLink="number/large-number-calculator">Big Numbers Calculator</button>
+    <button mat-menu-item routerLink="number/scientific-notation-calculator">Convert to Scientific Notation Calculator</button>
     <button mat-menu-item>Is a Multiple of Calculator</button>
-    <button mat-menu-item>Long Division</button>
+    <button mat-menu-item routerLink='number/long-number-division-calculator'>Long Division</button>
     <button mat-menu-item>Pi Calculator</button>
     <button mat-menu-item>Quotient and Remainder</button>
     <button mat-menu-item>Round to The Nearest Calculator</button>
@@ -88,14 +86,11 @@
   <mat-menu #miscellaneousMenu="matMenu">
     <button mat-menu-item>CHMOD Generator</button>
     <button mat-menu-item>Morse Code Translator</button>
-    <button mat-menu-item>Scientific Calculator</button>
+    <button mat-menu-item >Scientific Calculator</button>
   </mat-menu>
 
   <mat-menu #mobileOptionsMenu="matMenu">
-    <button mat-menu-item (click)="toggleSidenav()">
-      <mat-icon>menu</mat-icon>
-      <span>Open Menu</span>
-    </button>
+    
   </mat-menu>
 
 </mat-toolbar>

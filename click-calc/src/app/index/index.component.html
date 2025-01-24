@@ -1,12 +1,41 @@
-<div class="calculator-content">
-  <section *ngFor="let section of calculatorSections" class="calculator-section">
-    <h2 class="section-title">{{ section.title }}</h2>
-    <div class="calculator-grid">
-      <div *ngFor="let item of section.items" class="calculator-item">
-        <h3 class="calculator-title">{{ item.title }}</h3>
-        <p class="calculator-description">{{ item.description }}</p>
-        <a [routerLink]="item.link" class="calculator-link">Try the {{ item.title }}</a>
-      </div>
-    </div>
-  </section>
+<div class="calculator-container">
+  <mat-card class="page-header">
+    <mat-card-content>
+      <h1>Calculator Hub</h1>
+      <p>Your comprehensive toolkit for mathematical calculations</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="calculator-sections">
+    <mat-card *ngFor="let section of calculatorSections" class="section-card">
+      <mat-card-header>
+        <div mat-card-avatar class="section-header-image">
+          <mat-icon>{{ section.icon }}</mat-icon>
+        </div>
+        <mat-card-title>{{ section.title }}</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content >
+        <div class="calculator-grid">
+          <mat-card *ngFor="let item of section.items" class="calculator-item" >
+            <mat-card-header>
+              <mat-card-title>
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.title }}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ item.description }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <a mat-raised-button color="primary" [routerLink]="item.link">
+                Explore
+                <mat-icon>arrow_forward</mat-icon>
+              </a>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

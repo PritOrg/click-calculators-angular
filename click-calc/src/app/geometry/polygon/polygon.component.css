@@ -1,0 +1,124 @@
+
+:host {
+  --accent-color: #FF6B6B;
+  --tertiary-color: #4ECDC4;
+  --polygon-fill: #DCFDD9;
+  --text-primary: #2C3E50;
+  --grid-color: rgba(240, 240, 240, 0.3);
+}
+
+
+.polygon-container {
+  background: transparent;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.polygon-svg {
+  .grid-background {
+    opacity: 0.5;
+  }
+
+  .circumscribed-circle,
+  .inscribed-circle {
+    fill: none;
+    stroke: var(--primary-color);
+    stroke-width: 1;
+  }
+
+  .polygon-shape {
+    fill: var(--polygon-fill);
+    stroke: var(--primary-color);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+  }
+
+  .center-point {
+    fill: var(--primary-color);
+  }
+
+  .radius-line {
+    stroke: var(--accent-color);
+    stroke-width: 1.5;
+  }
+
+  .apothem-line {
+    stroke: var(--tertiary-color);
+    stroke-width: 1.5;
+  }
+
+  .measurement-labels {
+    text {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .area-text {
+      fill: var(--accent-color);
+    }
+
+    .perimeter-text {
+      fill: var(--tertiary-color);
+    }
+
+    .circumradius-text {
+      fill: var(--accent-color);
+    }
+
+    .apothem-text {
+      fill: var(--tertiary-color);
+    }
+  }
+
+  .legend {
+    .legend-polygon {
+      fill: var(--polygon-fill);
+      stroke: var(--primary-color);
+    }
+
+    .legend-radius {
+      stroke: var(--accent-color);
+      stroke-width: 1.5;
+    }
+
+    .legend-apothem {
+      stroke: var(--tertiary-color);
+      stroke-width: 1.5;
+    }
+
+    .legend-text {
+      fill: var(--text-primary);
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+}
+
+.polygon-shape {
+  transition: all 0.3s ease-in-out;
+}
+
+
+.radius-line,
+.apothem-line {
+  transition: stroke-width 0.2s ease;
+
+  &:hover {
+    stroke-width: 2.5;
+    cursor: pointer;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .polygon-shape {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .polygon-svg {
+    forced-color-adjust: none;
+  }
+}

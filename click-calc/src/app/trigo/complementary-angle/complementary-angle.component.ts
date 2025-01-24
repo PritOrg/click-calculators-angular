@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./complementary-angle.component.css']
 })
 export class ComplementaryAngleComponent {
-  angleInput: string = '';
+  angleInput: string = '45';
   unit: 'degrees' | 'radians' = 'degrees';
   complementaryAngle: number | null = null;
   complementaryAngleDegrees: number | null = null;
@@ -19,6 +19,9 @@ export class ComplementaryAngleComponent {
   labelX: number = 0;
   labelY: number = 0;
 
+  ngOnInit(){
+    this.calculateComplementaryAngle();
+  }
   calculateComplementaryAngle() {
     let angle: number;
 

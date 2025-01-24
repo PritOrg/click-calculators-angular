@@ -1,14 +1,16 @@
-.calculator-content {
+.calculator-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.calculator-section {
+.section-card {
   margin-bottom: 40px;
+  background-color: transparent;
+  box-shadow: none;
 }
 
-.section-title {
+.section-card .mat-mdc-card-header-title {
   color: #00796b;
   font-size: 1.8rem;
   margin-bottom: 1rem;
@@ -21,41 +23,54 @@
 }
 
 .calculator-item {
-  background: #e8f5e9;
+  background: #111211;
   border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 20px rgba(0, 121, 107, 0.1);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 121, 107, 0.1);
 }
 
-.calculator-title {
+.calculator-item .mat-mdc-card-header-title {
   color: #00796b;
   font-size: 1.4rem;
-  margin-bottom: 0.5rem;
 }
 
-.calculator-description {
+.calculator-item .mat-mdc-card-content p {
   color: #666;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
 
-.calculator-link {
-  color: #00796b;
-  text-decoration: underline;
+.calculator-item .mat-raised-button {
+  background-color: #00796b;
+  color: white;
+}
+
+.calculator-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 25px rgba(0, 121, 107, 0.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .section-title {
+  .section-card .mat-mdc-card-header-title {
     font-size: 1.5rem;
   }
 
-  .calculator-title {
+  .calculator-item .mat-mdc-card-header-title {
     font-size: 1.25rem;
   }
 
-  .calculator-description {
+  .calculator-item .mat-mdc-card-content p {
     font-size: 0.95rem;
   }
+}
+
+/* Additional Material-specific tweaks */
+.section-header-image .mat-icon {
+  color: #00796b;
+}
+
+.calculator-item .mat-icon {
+  margin-right: 10px;
+  color: #00796b;
 }

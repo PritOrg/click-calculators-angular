@@ -1,0 +1,77 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Long Division Calculator</h1>
+      <div class="description">
+        <mat-icon>info</mat-icon>
+        <span>
+          Perform detailed long division calculations. Enter your dividend and divisor below to see each step clearly explained.
+        </span>
+      </div>
+    </div>
+  
+    <!-- Input Section -->
+    <div class="input-section row">
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Dividend</mat-label>
+        <input matInput type="number" [(ngModel)]="dividend" placeholder="Enter the dividend" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="input-field">
+        <mat-label>Divisor</mat-label>
+        <input matInput type="number" [(ngModel)]="divisor" placeholder="Enter the divisor" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="calculateDivision()">Calculate</button>
+    </div>
+  
+    <!-- Result Section -->
+    <div *ngIf="steps.length > 0" class="result-section">
+      <mat-card class="result-card">
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Results</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <span class="result-formula">
+            <p><strong>Final Quotient:</strong> <span class="final-value">{{ finalQuotient }}</span></p>
+            <p><strong>Final Remainder:</strong> <span class="final-value">{{ finalRemainder }}</span></p>
+          </span>
+        </mat-card-content>
+      </mat-card>
+  
+      <!-- Step-by-Step Explanation -->
+      <mat-expansion-panel class="steps-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>lightbulb</mat-icon>
+            View Step-by-Step Solution
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+  
+        <mat-vertical-stepper class="scientific-stepper">
+          <mat-step *ngFor="let step of steps; let i = index">
+            <ng-template matStepLabel>Step {{ i + 1 }}</ng-template>
+            <div class="calculation-box">
+              <p>
+                <strong>Step {{ i + 1 }}:</strong> Divide <strong>{{ step.partialDividend }}</strong> by
+                <strong>{{ step.divisor }}</strong>.
+              </p>
+              <div class="formula-box">
+                <pre>
+    {{ step.quotient }}
+    ――――――――
+    {{ step.divisor }}){{ step.partialDividend }}
+       {{ step.partialProduct }}
+       ―――――――
+        {{ step.remainder }}
+                </pre>
+              </div>
+              <p>
+                <strong>Quotient:</strong> {{ step.quotient }} <br />
+                <strong>Remainder:</strong> {{ step.remainder }}
+              </p>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  

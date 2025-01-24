@@ -1,0 +1,249 @@
+<div class="converter-container fade-in">
+  <div class="calculator-header">
+    <h1>Right Triangle Calculator</h1>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>Calculate the missing sides, angles, area, and perimeter of a right triangle by entering any two known
+        sides.</span>
+    </div>
+  </div>
+
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Side a (leg)</mat-label>
+      <input matInput type="number" [(ngModel)]="sideA" id="sideA" (input)="calculate()" placeholder="Enter side a" />
+      <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Side b (leg)</mat-label>
+      <input matInput type="number" [(ngModel)]="sideB" id="sideB" (input)="calculate()" placeholder="Enter side b" />
+      <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Hypotenuse c</mat-label>
+      <input matInput type="number" [(ngModel)]="hypotenuseC" id="hypotenuseC" (input)="calculate()"
+        placeholder="Enter hypotenuse" />
+      <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="results-section" *ngIf="isCalculated">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>check_circle</mat-icon>
+        <mat-card-title>Results</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="result-formula">
+          <p><strong>Hypotenuse (c):</strong><span class="final-value">{{ calculatedHypotenuse | number:'1.2-2'
+              }}</span> </p>
+          <p><strong>Angle A:</strong><span class="final-value">{{ angleA | number:'1.2-2' }}°</span> </p>
+          <p><strong>Angle B:</strong><span class="final-value">{{ angleB | number:'1.2-2' }}°</span> </p>
+          <p><strong>Area:</strong><span class="final-value">{{ area | number:'1.2-2' }}</span> </p>
+          <p><strong>Perimeter:</strong><span class="final-value">{{ perimeter | number:'1.2-2' }}</span> </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>auto_graph</mat-icon>
+        <mat-card-title>Interactive Visualization</mat-card-title>
+        
+      </mat-card-header>
+      <mat-card-content>
+        <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" 
+          class="triangle-svg">
+          
+          <!-- Background Grid (Optional) -->
+          <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+          </pattern>
+          <rect width="100%" height="100%" fill="url(#grid)" />
+    
+          <!-- Triangle Structure with Animation -->
+          <polygon points="50,250 50,50 250,250" 
+            class="triangle-shape"
+            
+            stroke="#456990" 
+            stroke-width="3">
+            <animate attributeName="opacity" 
+              from="0" to="1" 
+              dur="1s" 
+              begin="0s" 
+              fill="freeze"/>
+          </polygon>
+    
+          <!-- Enhanced Side Labels -->
+          <g class="side-labels">
+            <!-- Side b Label with Background -->
+            <rect x="130" y="255" width="70" height="25" rx="5" 
+              fill="white" fill-opacity="0.9"/>
+            <text x="150" y="270" 
+              class="side-label"
+              text-anchor="middle" 
+              fill="#456990" 
+              font-size="14"
+              font-weight="500">
+              b = {{ sideB || calculatedHypotenuse | number:'1.2-2' }}
+            </text>
+    
+            <!-- Side a Label with Background -->
+            <rect x="5" y="130" width="70" height="25" rx="5" 
+              fill="white" fill-opacity="0.9"
+              transform="rotate(-90,20,150)"/>
+            <text x="20" y="150" 
+              class="side-label"
+              text-anchor="middle" 
+              fill="#456990" 
+              font-size="14"
+              font-weight="500"
+              transform="rotate(-90,20,150)">
+              a = {{ sideA || calculatedHypotenuse | number:'1.2-2' }}
+            </text>
+    
+            <!-- Hypotenuse Label with Background -->
+            <rect x="115" y="125" width="70" height="25" rx="5" 
+              fill="white" fill-opacity="0.9"/>
+            <text x="150" y="140" 
+              class="hypotenuse-label"
+              text-anchor="middle" 
+              fill="#F45B69" 
+              font-size="14"
+              font-weight="500">
+              c = {{ calculatedHypotenuse | number:'1.2-2' }}
+            </text>
+          </g>
+    
+          <!-- Animated Hypotenuse Line -->
+          <line x1="50" y1="50" x2="250" y2="250" 
+            class="hypotenuse-line"
+            stroke="#F45B69" 
+            stroke-width="3">
+            <animate attributeName="stroke-dashoffset" 
+              from="500" to="0" 
+              dur="1.5s" 
+              begin="0s" 
+              fill="freeze"/>
+          </line>
+    
+          <!-- Enhanced Angle Markers -->
+          <g class="angle-markers">
+            <!-- Angle A -->
+            <path d="M50,250 L70,250 A20,20 0 0,1 50,230 Z" 
+              class="angle-highlight"
+              fill="#D7BCE8">
+              <animate attributeName="fill-opacity" 
+                from="0" to="0.6" 
+                dur="0.5s" 
+                begin="1s" 
+                fill="freeze"/>
+            </path>
+            <g class="angle-label">
+              <rect x="75" y="245" width="85" height="20" rx="5" 
+                fill="white" fill-opacity="0.9"/>
+              <text x="90" y="260" 
+                fill="#08090A" 
+                font-size="12"
+                font-weight="500">
+                ∠A = {{ angleA | number:'1.2-2' }}°
+              </text>
+            </g>
+    
+            <!-- Angle B -->
+            <path d="M250,250 L230,250 A20,20 0 0,1 250,230 Z" 
+              class="angle-highlight"
+              fill="#D7BCE8">
+              <animate attributeName="fill-opacity" 
+                from="0" to="0.6" 
+                dur="0.5s" 
+                begin="1s" 
+                fill="freeze"/>
+            </path>
+            <g class="angle-label">
+              <rect x="245" y="205" width="85" height="20" rx="5" 
+                fill="white" fill-opacity="0.9"/>
+              <text x="260" y="220" 
+                fill="#08090A" 
+                font-size="12"
+                font-weight="500">
+                ∠B = {{ angleB | number:'1.2-2' }}°
+              </text>
+            </g>
+          </g>
+    
+          <!-- Enhanced Right Angle Marker -->
+          <g class="right-angle-marker">
+            <rect x="50" y="230" width="20" height="20" 
+              fill="#DCFDD9" 
+              stroke="#456990" 
+              stroke-width="1.5">
+              <animate attributeName="opacity" 
+                from="0" to="1" 
+                dur="0.5s" 
+                begin="1.5s" 
+                fill="freeze"/>
+            </rect>
+            <text x="55" y="245" 
+              fill="#456990" 
+              font-size="10"
+              font-weight="bold">90°</text>
+          </g>
+    
+        </svg>
+      </mat-card-content>
+      
+    </mat-card>
+  </div>
+
+  <mat-expansion-panel class="steps-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>lightbulb</mat-icon>
+        View Step-by-Step Solution
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="solution-content">
+      <h2>Formula and Steps for Calculation</h2>
+
+      <div class="formula-card">
+        <p>Formula Used: c² = a² + b²</p>
+        <p>Area = (1/2) × a × b</p>
+        <p>Perimeter = a + b + c</p>
+      </div>
+
+      <mat-vertical-stepper>
+        <mat-step>
+          <ng-template matStepLabel>Step 1: Identify Known Sides</ng-template>
+          <div class="calculation-box">
+            <p>Input the sides of the triangle you know (e.g., a, b, or c).</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 2: Apply the Pythagorean Theorem</ng-template>
+          <div class="calculation-box">
+            <p>If side a and b are known, calculate the hypotenuse (c) using the formula: c² = a² + b².</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 3: Calculate Angles</ng-template>
+          <div class="calculation-box">
+            <p>Calculate angles A and B using trigonometric formulas (sin, cos, tan).</p>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Step 4: Calculate Area and Perimeter</ng-template>
+          <div class="calculation-box">
+            <p>Area = (1/2) × a × b</p>
+            <p>Perimeter = a + b + c</p>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-expansion-panel>
+</div>

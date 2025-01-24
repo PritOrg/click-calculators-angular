@@ -1,0 +1,96 @@
+<div class="converter-container fade-in">
+  <div class="calculator-header">
+    <h1>Scientific Notation Calculator</h1>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>
+        Convert numbers into scientific and 'e' notation. Type values in decimal
+        or 'e' notation (e.g., <code>1.67, -0.00001602, 1e10</code>, etc.).
+      </span>
+    </div>
+  </div>
+
+  <!-- Input Section -->
+  <div class="input-section row">
+    <mat-form-field appearance="outline" class="input-field">
+      <mat-label>Enter a Number</mat-label>
+      <input matInput [(ngModel)]="inputNumber" (ngModelChange)="convertToScientificNotation()"
+        placeholder="Enter a number" />
+    </mat-form-field>
+  </div>
+
+  <!-- Result Section -->
+  <div class="result-section">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>check_circle</mat-icon>
+        <mat-card-title>Results</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="result-formula">
+        <p><strong>Scientific Notation:</strong><span class="final-value"> {{ result!.scientificNotation }}</span></p>
+        <p><strong>'e' Notation:</strong><span class="final-value"> {{ result!.eNotation }}</span></p>
+        <p><strong>Significant Figures:</strong> <span class="final-value">{{ result!.significantFigures }}</span></p>
+      </span>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <mat-expansion-panel class="steps-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>lightbulb</mat-icon>
+        View Step-by-Step Solution
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <!-- Detailed Explanation Section -->
+    <mat-vertical-stepper class="scientific-stepper">
+      <mat-step>
+        <ng-template matStepLabel>Step 1: Move the Decimal Point</ng-template>
+        <div class="calculation-box">
+          <p>
+            Identify the current position of the decimal point in the number <strong>{{ inputNumber }}</strong>. Move
+            the decimal point
+            <strong>{{ result!.exponent }}</strong> places to the
+            <strong>{{ result!.exponent > 0 ? 'left' : 'right' }}</strong> so that only one non-zero digit remains to
+            the left of the decimal point.
+          </p>
+          <p><strong>Result after moving the decimal point:</strong> {{ result!.mantissa }}</p>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Step 2: Determine the Exponent</ng-template>
+        <div class="calculation-box">
+          <p>
+            Count the number of places the decimal point was moved. This number is the exponent for the power of 10.
+            If the decimal was moved to the left, the exponent is positive; if moved to the right, the exponent is
+            negative.
+          </p>
+          <p><strong>Exponent:</strong> {{ result!.exponent }}</p>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Step 3: Combine Mantissa and Exponent</ng-template>
+        <div class="calculation-box">
+          <p>
+            Write the final number in scientific notation by combining the mantissa with the power of 10. The result is:
+          </p>
+          <p><strong>Scientific Notation:</strong> {{ result!.scientificNotation }}</p>
+        </div>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Final Answer</ng-template>
+        <div class="formula-box">
+          <p>
+            The number <strong>{{ inputNumber }}</strong> in scientific notation is:
+            <strong>{{ result!.scientificNotation }}</strong>
+          </p>
+          <p>Scientific notation is useful for expressing very large or very small numbers in a compact form.</p>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </mat-expansion-panel>
+  
+</div>

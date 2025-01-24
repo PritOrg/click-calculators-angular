@@ -51,7 +51,7 @@
     </div>
   
     <div class="result-section" *ngIf="monthlySalary || biweeklySalary || weeklySalary || dailySalary || hourlyWage">
-      <mat-card class="result-card">
+      <mat-card class="result-card" >
         <mat-card-header>
           <mat-icon>check_circle</mat-icon>
           <mat-card-title>Result</mat-card-title>
@@ -117,7 +117,7 @@
           </mat-step>
   
           <mat-step>
-            <ng-template matStepLabel>Calculate Hourly Wage</ng-template>
+            <ng-template matStepLabel >Calculate Hourly Wage</ng-template>
             <div class="calculation-box">
               <p>Hourly Wage = {{ weeklySalary.toFixed(2) }} / {{ hoursPerWeek }} = {{ hourlyWage.toFixed(2) }}</p>
             </div>

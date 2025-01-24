@@ -1,0 +1,185 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>Polygon Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>Calculate various properties of a polygon by entering the number of sides and side length.</span>
+        </div>
+    </div>
+
+    <div class="input-section">
+        <mat-form-field appearance="outline">
+            <mat-label>Number of Sides</mat-label>
+            <input matInput type="number" [(ngModel)]="sides" (input)="calculatePolygon()"
+                placeholder="Enter number of sides" min="3" max="1000" />
+            <mat-icon matSuffix>straighten</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <!-- Step 2: Choose property to calculate -->
+    <div class="selection-section">
+        <mat-form-field appearance="outline">
+            <mat-label>Find the Value Of</mat-label>
+            <mat-select [(value)]="findValue" (selectionChange)="calculatePolygon()">
+                <mat-option *ngFor="let output of calculationOptions" [value]="output">
+                    {{ output }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="selection-section">
+        <mat-form-field appearance="outline">
+            <mat-label>Solve From</mat-label>
+            <mat-select [(value)]="solveFrom" (selectionChange)="calculatePolygon()">
+                <mat-option *ngFor="let input of calculationOptions" [value]="input">
+                    {{ input }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="input-section">
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{ solveFrom | titlecase }}</mat-label>
+            <input matInput type="number" [(ngModel)]="inputValue" (input)="calculatePolygon()"
+                placeholder="Enter side length" (change)="calculatePolygon()"/>
+            <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+        </mat-form-field>
+    </div>
+    <div class="input-section">
+
+    <button mat-raised-button color="primary" (click)="calculatePolygon()">
+        <mat-icon>calculate</mat-icon>
+        Convert
+      </button>
+      </div>
+    <div class="results-section" *ngIf="isCalculated">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Results</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="result-formula">
+                    <p>
+                       {{ findValue }} of  {{ solveFrom }} {{ inputValue }} is:
+                        <span class="final-value">{{ getResult(findValue) | number: '1.2-2' }}</span>
+                      </p>
+                    <p><strong>Area:</strong> <span class="final-value">{{ area | number: '1.2-2' }}</span></p>
+                    <p><strong>Perimeter:</strong> <span class="final-value">{{ perimeter | number: '1.2-2' }}</span>
+                    </p>
+                    <p><strong>Circumradius:</strong> <span class="final-value">{{ circumradius | number: '1.2-2'
+                            }}</span>
+                    </p>
+                    <p><strong>Apothem:</strong> <span class="final-value">{{ apothem | number: '1.2-2' }}</span></p>
+                    <p><strong>Inscribed Circle Area:</strong> <span class="final-value">{{ inscribedCircleArea |
+                            number:
+                            '1.2-2' }}</span></p>
+                    <p><strong>Circumscribed Circle Area:</strong> <span class="final-value">{{ circumscribedCircleArea
+                            |
+                            number: '1.2-2' }}</span></p>
+                    <p><strong>Inscribed Circle Circumference:</strong> <span class="final-value">{{
+                            inscribedCircumference
+                            | number: '1.2-2' }}</span></p>
+                </div>
+                
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>auto_graph</mat-icon>
+                <mat-card-title>Polygon Visualization</mat-card-title>
+
+            </mat-card-header>
+            <mat-card-content>
+                <div class="polygon-container  justify-content-center">
+                    <svg width="500" height="500" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg"
+                        class="polygon-svg">
+                        <defs>
+                            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--grid-color)" stroke-width="0.5" />
+                            </pattern>
+                        </defs>
+                        <rect x="-150" y="-150" width="300" height="300" fill="url(#grid)" class="grid-background" />
+
+                        <!-- Circumscribed circle -->
+                        <circle cx="0" cy="0" [attr.r]="100" class="circumscribed-circle" stroke-dasharray="5,5" />
+
+                        <!-- Inscribed circle -->
+                        <circle cx="0" cy="0" [attr.r]="100 * apothem/circumradius" class="inscribed-circle"
+                            stroke-dasharray="5,5" />
+
+                        <!-- Polygon -->
+                        <polygon [attr.points]="polygonPoints" class="polygon-shape" />
+
+                        <!-- Center point -->
+                        <circle cx="0" cy="0" r="2" class="center-point" />
+
+                        <!-- Radius line -->
+                        <line x1="0" y1="0" x2="100" y2="0" class="radius-line" />
+
+                        <!-- Apothem line -->
+                        <line x1="0" y1="0" [attr.x2]="100 * apothem/circumradius" y2="0" class="apothem-line" />
+
+                        <!-- Labels -->
+                        <g class="measurement-labels">
+                            <text x="-140" y="-130" class="area-text">
+                                Area: {{area | number:'1.2-2'}}
+                            </text>
+                            <text x="-140" y="-115" class="perimeter-text">
+                                Perimeter: {{perimeter | number:'1.2-2'}}
+                            </text>
+                            <text x="-140" y="-100" class="circumradius-text">
+                                Circumradius: {{circumradius | number:'1.2-2'}}
+                            </text>
+                            <text x="-140" y="-85" class="apothem-text">
+                                Apothem: {{apothem | number:'1.2-2'}}
+                            </text>
+                        </g>
+
+                        <!-- Legend -->
+                        <g transform="translate(-140, 100)" class="legend">
+                            <rect width="10" height="10" class="legend-polygon" />
+                            <text x="15" y="9" class="legend-text">Polygon</text>
+                            <line x1="0" y1="20" x2="10" y2="20" class="legend-radius" />
+                            <text x="15" y="24" class="legend-text">Circumradius</text>
+                            <line x1="0" y1="35" x2="10" y2="35" class="legend-apothem" />
+                            <text x="15" y="39" class="legend-text">Apothem</text>
+                        </g>
+                    </svg>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <mat-expansion-panel class="steps-panel">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-icon>lightbulb</mat-icon>
+                View Step-by-Step Solution
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div class="solution-content">
+            <h2>Formula and Steps for Calculation</h2>
+
+            <div class="formula-card">
+                <p><strong>Area Formula:</strong> Area = (1/2) × Perimeter × Apothem</p>
+                <p><strong>Perimeter Formula:</strong> Perimeter = Number of Sides × Side Length</p>
+                <p><strong>Circumradius:</strong> Circumradius = Side Length / (2 × sin(π / Number of Sides))</p>
+                <p><strong>Apothem:</strong> Apothem = Side Length / (2 × tan(π / Number of Sides))</p>
+            </div>
+
+            <mat-vertical-stepper>
+                <mat-step *ngFor="let step of steps; let i = index">
+                  <ng-template matStepLabel>Step {{ i + 1 }}</ng-template>
+                  <p>{{ step }}</p>
+                </mat-step>
+              </mat-vertical-stepper>
+              
+        </div>
+
+
+    </mat-expansion-panel>
+</div>

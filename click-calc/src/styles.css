@@ -1,3 +1,4 @@
+
 /* Global Reset and Base Styles */
 html, body {
   height: 100%;
@@ -8,8 +9,38 @@ html, body {
 body {
   font-family: 'Roboto', 'Helvetica Neue', sans-serif;
   line-height: 1.6;
-  color: #333;
-  background-color: #f5f5f5;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  transition: all 0.3s ease;
+}
+
+/* Theme Variables */
+:root {
+  /* Light Theme Variables */
+  --background-color: #ffffff;
+  --card-background: #f5f5f5;
+  --primary-color: #00796b;
+  --secondary-color: #81c784;
+  --text-color: #333333;
+  --icon-color: #00796b;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --stepper-bg: #e0f2f1;
+  --calculation-box: #f3e5f5;
+  --formula-box: #e8f5e9;
+}
+
+body.dark-mode {
+  /* Dark Theme Variables */
+  --background-color: #2a2c2c;
+  --card-background: #333333;
+  --primary-color: #00796b;
+  --secondary-color: #13ad9e8b;
+  --text-color: #e0e0e0;
+  --icon-color: #00796b;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --stepper-bg: #37474f;
+  --calculation-box: #424242;
+  --formula-box: #033905;
 }
 
 /* Input Number Styles */
@@ -25,17 +56,26 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+.main-content-container{
+  box-shadow: 0 4px 20px var(--shadow-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
 
+.main-content{
+  box-shadow: 0 4px 20px var(--shadow-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
 /* Main Container Style */
 .converter-container {
   max-width: 900px;
   margin: 30px auto;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 121, 107, 0.1);
-  position: relative;
-  background-color: #2a2c2c;
-  overflow: hidden;
+  box-shadow: 0 4px 20px var(--shadow-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .converter-container::before {
@@ -53,14 +93,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 h1 {
-  color: #00796b;
+  color: var(--primary-color);
   font-size: 2rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
 
 h2 {
-  color: #00796b;
+  color: var(--primary-color);
   font-size: 1.5rem;
   margin: 1.5rem 0 1rem;
   font-weight: 500;
@@ -81,23 +121,26 @@ h2 {
   gap: 1rem;
   margin-bottom: 2rem;
 }
-
+mat-form-field, .mat-form-field {
+  color: var(--text-color);
+}
 mat-form-field {
+  color: var(--text-color);
   width: 100%;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #00796b;
+  color: var(--primary-color);
 }
 
 .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-  color: #00796b;
+  color: var(--primary-color);
 }
 
 /* Button Styles */
 .mat-raised-button.mat-primary {
-  background-color: #00796b;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   height: 56px;
   margin-top: 3px;
 }
@@ -115,13 +158,14 @@ mat-form-field {
 }
 
 .result-card {
-  background-color: #e8f5e9;
+  background-color: var(--card-background);
   border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
   transition: all 0.3s ease;
 }
 
 .result-card mat-card-header {
-  color: #00796b;
+  color: var(--primary-color);
 }
 
 .result-formula {
@@ -133,13 +177,14 @@ mat-form-field {
 
 .final-value {
   font-weight: bold;
-  color: #00796b;
+  color: var(--primary-color);
   font-size: 1.5rem;
 }
 
 /* Steps and Solutions */
 .steps-panel {
   margin: 2rem;
+  background-color: var(--stepper-bg);
   border: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -168,30 +213,30 @@ mat-form-field {
 }
 
 .mat-step-header .mat-step-icon {
-  background-color: #00796b;
+  background-color: var(--primary-color);
 }
 
 .mat-step-header .mat-step-icon-selected {
-  background-color: #00796b;
+  background-color: var(--primary-color);
 }
 
 /* Calculation Display Boxes */
 .calculation-box {
-  background-color: #f3e5f5;
-  border: 1px solid #ce93d8;
+  background-color: var(--calculation-box);
+  color: var(--text-color);
+  border: 1px solid var(--secondary-color);
   padding: 15px;
   border-radius: 8px;
   margin: 15px 0;
   transition: all 0.3s ease;
-  color:black;
 
 }
 
 .formula-box {
-  background-color: #e8f5e9;
-  border: 1px solid #81c784;
+  background-color: var(--formula-box);
+  color: var(--text-color);
+  border: 1px solid var(--secondary-color);
   padding: 15px;
-  color:black;
   border-radius: 8px;
   margin: 15px 0;
   transition: all 0.3s ease;
@@ -199,11 +244,12 @@ mat-form-field {
 
 /* Icons */
 .suffix-icon {
-  color: #00796b;
+  color: var(--icon-color);
 }
 
 mat-icon {
   vertical-align: middle;
+  color: var(--icon-color);
 }
 
 /* Material Card Overrides */
@@ -214,10 +260,50 @@ mat-card {
 
 /* Expansion Panel Customization */
 .mat-expansion-panel-header-title {
-  color: #00796b;
+  color: var(--primary-color);
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Dark Mode Switcher Styling */
+.theme-switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.theme-switch label {
+  width: 60px;
+  height: 30px;
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.theme-switch label::after {
+  content: '';
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+input:checked + label::after {
+  transform: translateX(30px);
 }
 
 /* Responsive Design */
@@ -272,14 +358,14 @@ mat-card {
 
 /* Material Theme Overrides */
 .mat-form-field-appearance-outline .mat-form-field-outline-thick {
-  color: #00796b;
+  color: var(--primary-color);
 }
 
 .mat-form-field.mat-focused .mat-form-field-label {
-  color: #00796b;
+  color: var(--primary-color);
 }
 
 .mat-form-field.mat-focused .mat-form-field-ripple {
-  background-color: #00796b;
+  background-color: var(--primary-color);
 }
 

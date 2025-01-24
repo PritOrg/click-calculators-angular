@@ -29,11 +29,22 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 import { TrigConverterComponent } from './trigo/trig-converter/trig-converter.component';
 import { MatRadioModule } from '@angular/material/radio';
 import { TrigCalculatorComponent } from './trigo/trig-calculator/trig-calculator.component';
 import { SalaryCalculatorComponent } from './salary-calculator/salary-calculator.component';
 import { ComplementaryAngleComponent } from './trigo/complementary-angle/complementary-angle.component';
+import { DecimalToRatioComponent } from './ratio/decimal-to-ratio/decimal-to-ratio.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { RightTriangleComponent } from './trigo/right-triangle/right-triangle.component';
+import { LargeNumberCalcComponent } from './numbers/large-number-calc/large-number-calc.component';
+import { ScientificNotationCalculatorComponent } from './numbers/scientific-notation-calculator/scientific-notation-calculator.component';
+import { LongDivisionComponent } from './numbers/long-division/long-division.component';
+import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
+import { PolygonComponent } from './geometry/polygon/polygon.component';
+import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime-factorization.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +61,15 @@ import { ComplementaryAngleComponent } from './trigo/complementary-angle/complem
     TrigCalculatorComponent,
     SalaryCalculatorComponent,
     ComplementaryAngleComponent,
+    DecimalToRatioComponent,
+    RightTriangleComponent,
+    LargeNumberCalcComponent,
+    ScientificNotationCalculatorComponent,
+    LongDivisionComponent,
+    MatricesCalcComponent,
+    PolygonComponent,
+    PrimeFactorizationComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -72,7 +92,9 @@ import { ComplementaryAngleComponent } from './trigo/complementary-angle/complem
     BrowserAnimationsModule,
     MatStepperModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSlideToggleModule,
+    MatButtonToggleModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

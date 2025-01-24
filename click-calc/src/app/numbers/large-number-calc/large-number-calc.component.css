@@ -1,0 +1,30 @@
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .input-field {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .result-card {
+    margin-top: 20px;
+  }
+  
+  .final-value {
+    font-weight: bold;
+    color: #456990;
+    font-size: 1.2rem;
+    word-break: break-word;
+  }
+  
+  .final-value.collapsed {
+    cursor: pointer;
+    color: #f45b69;
+  }
+  
+  .final-value.collapsed:hover {
+    text-decoration: underline;
+  }

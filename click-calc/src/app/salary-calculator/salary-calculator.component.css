@@ -1,0 +1,155 @@
+/* Theme Variables */
+:root {
+  /* Light Theme Variables */
+  --background-color: #ffffff;
+  --card-background: #f5f5f5;
+  --primary-color: #00796b;
+  --secondary-color: #81c784;
+  --text-color: #333333;
+  --icon-color: #00796b;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --stepper-bg: #e0f2f1;
+  --calculation-box: #f3e5f5;
+  --formula-box: #e8f5e9;
+}
+
+body.dark-mode {
+  /* Dark Theme Variables */
+  --background-color: #2a2c2c;
+  --card-background: #333333;
+  --primary-color: #00bfa5;
+  --secondary-color: #26a69a;
+  --text-color: #e0e0e0;
+  --icon-color: #00bfa5;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --stepper-bg: #37474f;
+  --calculation-box: #424242;
+  --formula-box: #033905;
+}
+
+/* Global Styling */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Angular Material overrides */
+::ng-deep mat-card {
+  background-color: var(--card-background) !important;
+  box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+
+/* Override button color */
+::ng-deep mat-raised-button {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+::ng-deep mat-raised-button:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+/* Override input color */
+::ng-deep mat-form-field input {
+  color: var(--text-color) !important;
+}
+
+::ng-deep mat-form-field .mat-label {
+  color: var(--text-color) !important;
+}
+
+/* Dark Mode Styles for Button and Input */
+body.dark-mode ::ng-deep mat-raised-button {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+body.dark-mode ::ng-deep mat-raised-button:hover {
+  background-color: var(--secondary-color) !important;
+}
+
+body.dark-mode ::ng-deep mat-form-field input {
+  color: var(--text-color) !important;
+}
+
+body.dark-mode ::ng-deep mat-form-field .mat-label {
+  color: var(--text-color) !important;
+}
+
+/* Expand styling for other components */
+::ng-deep mat-expansion-panel {
+  background-color: var(--stepper-bg) !important;
+}
+
+::ng-deep mat-expansion-panel-header {
+  background-color: var(--primary-color) !important;
+  color: white;
+}
+
+::ng-deep mat-expansion-panel-header mat-icon {
+  color: white;
+}
+
+::ng-deep .final-value {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+::ng-deep .solution-content h2 {
+  color: var(--text-color);
+}
+
+/* Result Card */
+::ng-deep .result-card {
+  background-color: var(--card-background) !important;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  border-radius: 8px;
+}
+
+/* Calculation Boxes */
+::ng-deep .calculation-box {
+  background-color: var(--calculation-box) !important;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* Formula Boxes */
+::ng-deep .formula-card {
+  background-color: var(--formula-box) !important;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+/* Other component overrides */
+::ng-deep mat-step {
+  background-color: var(--card-background) !important;
+}
+
+::ng-deep mat-vertical-stepper {
+  background-color: var(--stepper-bg) !important;
+
+  margin-top: 20px;
+}
+
+body.dark-mode ::ng-deep mat-card {
+  background-color: var(--card-background) !important;
+}
+
+body.dark-mode ::ng-deep mat-form-field {
+  background-color: var(--card-background) !important;
+}
+
+body.dark-mode ::ng-deep .result-card {
+  background-color: var(--card-background) !important;
+}

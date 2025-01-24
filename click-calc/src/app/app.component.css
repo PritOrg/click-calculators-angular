@@ -1,17 +1,23 @@
 .app-wrapper {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sidenav-container {
-    background-color: black;
-    height: 100%;
-  }
-  
-  .main-content {
-    flex:1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    padding: 16px;
-  }
-  
+.sidenav-container {
+  background-color: black;
+  height: 100%;
+}
+
+.main-content {
+  flex: 1;
+
+  padding: 16px;
+}
+
+mat-card {
+  background-color: var(--card-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: all 0.3s ease;
+}

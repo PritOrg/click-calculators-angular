@@ -1,0 +1,152 @@
+<div class="converter-container">
+    <!-- Header Section -->
+    <header class="calculator-header">
+      <h1>Prime Factorization Calculator</h1>
+      <p class="description">
+        Find the <strong>Prime Factors</strong>, <strong>Exponential Decomposition</strong>, and <strong>Factorization Tree</strong> for any number up to 10 trillion.
+      </p>
+    </header>
+  
+    <!-- Calculator Section -->
+    <section class="input-section">
+        <mat-form-field appearance="outline">
+            <mat-label>Enter a Number (1 to 10 trillion)</mat-label>
+            <input
+              matInput
+              [(ngModel)]="inputNumber"
+              placeholder="Example: 100" 
+              type="number"
+              min="1"
+              max="10000000000000"
+              (input)="validateInput()"
+              (keyup.enter)="calculatePrimeFactors()"
+            />
+            <mat-hint *ngIf="inputError" class="error-message">{{ inputError }}</mat-hint>
+          </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="calculatePrimeFactors()">
+        Calculate
+      </button>
+    </section>
+  
+    <!-- Result Section -->
+    <section class="result-section fade-in">
+      <mat-card class="result-card" *ngIf="primeFactors.length > 0">
+        <mat-card-header>
+          <mat-card-title>Results</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="result-formula">
+            <strong>Prime Factors:</strong> <span class="final-value">{{ primeFactors.join(', ') }}</span>
+          </p>
+          <p class="result-formula">
+            <strong>Exponential Form:</strong> <span class="final-value">{{ exponentialForm }}</span>
+          </p>
+          <p class="result-formula">
+            <strong>CSV:</strong> <span class="final-value">{{ primeFactors.join(', ') }}</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  
+    <!-- Prime Factorization Tree Section -->
+    <section class="tree-section result-section fade-in">
+        <mat-card class="result-card" *ngIf="primeTree.length > 0">
+          <mat-card-header>
+            <mat-card-title>Prime Factorization Tree</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="tree-visualization result-formula">
+              <div class="tree-node" *ngFor="let node of primeTree">
+                <span class="node-value">{{ node.value }}</span>
+                <span *ngIf="node.divisor" class="node-divisor">÷ {{ node.divisor }}</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </section>
+  
+    <!-- Steps Section with Expansion Panel -->
+    <mat-expansion-panel class="steps-panel fade-in mb-4">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>lightbulb</mat-icon>
+          View Step-by-Step Solution
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="solution-content">
+        <h2>Steps to Factorize</h2>
+        <mat-vertical-stepper>
+          <!-- Step 1 -->
+          <mat-step>
+            <ng-template matStepLabel>Step 1: Start with the Smallest Prime</ng-template>
+            <div class="calculation-box">
+              <p>Divide the input number <strong>{{ inputNumber }}</strong> by 2 (the smallest prime number) repeatedly until it is no longer divisible.</p>
+            </div>
+          </mat-step>
+  
+          <!-- Step 2 -->
+          <mat-step>
+            <ng-template matStepLabel>Step 2: Proceed to the Next Prime</ng-template>
+            <div class="calculation-box">
+              <p>
+                Once 2 is exhausted, proceed to the next prime numbers (3, 5, 7, etc.), dividing the remaining quotient until the number becomes 1.
+              </p>
+            </div>
+          </mat-step>
+  
+          <!-- Step 3 -->
+          <mat-step>
+            <ng-template matStepLabel>Step 3: Generate Exponential Form</ng-template>
+            <div class="calculation-box">
+              <p>
+                Group identical prime factors and write them in exponential form (e.g., \(100 = 2^2 \times 5^2\)).
+              </p>
+            </div>
+          </mat-step>
+  
+          <!-- Final Step -->
+          <mat-step>
+            <ng-template matStepLabel>Final Factorization</ng-template>
+            <div class="formula-box">
+              <p><strong>Final Prime Factorization:</strong> {{ exponentialForm }}</p>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </mat-expansion-panel>
+  
+    <!-- Information Section -->
+    <section class="information-section fade-in mt-3">
+      <h2 style="margin-top: 2%;">How the Calculator Works</h2>
+      <div class="formula-box">
+        <p>
+          The Prime Factorization Calculator uses the **trial division method** to factorize the input number into its prime factors. Here's how it works:
+        </p>
+        <ol>
+          <li>Start by dividing the number by the smallest prime (2).</li>
+          <li>Continue dividing by the same prime until it no longer divides evenly.</li>
+          <li>Move to the next prime number and repeat the process.</li>
+          <li>Stop when the quotient becomes 1.</li>
+        </ol>
+        <p>
+          This process ensures that only prime numbers are used in the factorization. The final result includes:
+        </p>
+        <ul>
+          <li>A list of all prime factors.</li>
+          <li>Prime decomposition in exponential form.</li>
+          <li>A visualization of the prime factorization tree.</li>
+          <li>The ability to export the prime factors as a CSV file.</li>
+        </ul>
+      </div>
+  
+      <h2>Examples</h2>
+      <div class="calculation-box">
+        <p><strong>Example 1:</strong> Input <em>100</em> → Prime Factors: <em>2, 2, 5, 5</em> → Exponential Form: <em>2² × 5²</em></p>
+        <p><strong>Example 2:</strong> Input <em>144</em> → Prime Factors: <em>2, 2, 2, 2, 3, 3</em> → Exponential Form: <em>2⁴ × 3²</em></p>
+        <p><strong>Example 3:</strong> Input <em>997</em> → Prime Factors: <em>997</em> (a prime number)</p>
+      </div>
+    </section>
+  </div>
+  
