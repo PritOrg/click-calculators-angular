@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { TrigConverterComponent } from './trigo/trig-converter/trig-converter.component';
 import { MatRadioModule } from '@angular/material/radio';
@@ -45,6 +46,8 @@ import { LongDivisionComponent } from './numbers/long-division/long-division.com
 import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
 import { PolygonComponent } from './geometry/polygon/polygon.component';
 import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime-factorization.component';
+import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
+import { OverWeightCalculatorComponent } from './health/over-weight-calculator/over-weight-calculator.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,8 @@ import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime
     MatricesCalcComponent,
     PolygonComponent,
     PrimeFactorizationComponent,
+    IdealWeightCalculatorComponent,
+    OverWeightCalculatorComponent,
     
   ],
   imports: [
@@ -94,7 +99,8 @@ import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime
     MatCardModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatProgressSpinnerModule,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

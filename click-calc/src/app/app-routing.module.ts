@@ -18,6 +18,8 @@ import { LongDivisionComponent } from './numbers/long-division/long-division.com
 import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
 import { PolygonComponent } from './geometry/polygon/polygon.component';
 import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime-factorization.component';
+import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
+import { OverWeightCalculatorComponent } from './health/over-weight-calculator/over-weight-calculator.component';
 
 const routes: Routes = [
   {
@@ -91,6 +93,14 @@ const routes: Routes = [
   {
     path: 'matrices-calculator',  
     component: MatricesCalcComponent,
+  },
+  {
+    path: 'health/ideal-weight-calculator',  
+    component: IdealWeightCalculatorComponent,
+  },
+  {
+    path: 'health/over-weight-calculator',  
+    component: OverWeightCalculatorComponent,
   },
 ];
 

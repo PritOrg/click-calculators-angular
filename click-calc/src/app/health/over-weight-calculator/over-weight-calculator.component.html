@@ -1,0 +1,177 @@
+<div class="converter-container">
+    <!-- Header Section -->
+    <header class="calculator-header">
+      <div class="header-content">
+        <h1>
+          <mat-icon aria-hidden="true">fitness_center</mat-icon>
+          Overweight Calculator
+        </h1>
+        <p class="description">
+          Determine if you're overweight based on BMI and Ponderal Index (PI).
+        </p>
+      </div>
+    </header>
+  
+    <!-- Input Section -->
+    <mat-expansion-panel expanded class="personal-details-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon aria-hidden="true">person</mat-icon>
+          Personal Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="input-section">
+        <!-- Height Input -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Height</mat-label>
+          <input
+            matInput
+            [(ngModel)]="height"
+            placeholder="Enter your height"
+            type="number"
+            min="0"
+            required
+            aria-label="Height"
+            (ngModelChange)="calculateMetrics()"
+          />
+          <mat-select [(ngModel)]="heightUnit" aria-label="Height Unit" (ngModelChange)="calculateMetrics()">
+            <mat-option value="meters">meters</mat-option>
+            <mat-option value="cm">cm</mat-option>
+            <mat-option value="feet">feet</mat-option>
+            <mat-option value="inches">inches</mat-option>
+          </mat-select>
+          <mat-error *ngIf="!height">Height is required</mat-error>
+        </mat-form-field>
+  
+        <!-- Weight Input -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Weight</mat-label>
+          <input
+            matInput
+            [(ngModel)]="weight"
+            placeholder="Enter your weight"
+            type="number"
+            min="0"
+            required
+            aria-label="Weight"
+            (ngModelChange)="calculateMetrics()"
+          />
+          <mat-select [(ngModel)]="weightUnit" aria-label="Weight Unit" (ngModelChange)="calculateMetrics()">
+            <mat-option value="kg">kg</mat-option>
+            <mat-option value="lbs">lbs</mat-option>
+          </mat-select>
+          <mat-error *ngIf="!weight">Weight is required</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  
+    <!-- Results Section -->
+    <section class="result-section">
+      <mat-card>
+        <mat-card-content>
+          <h2>BMI Results</h2>
+          <p>
+            Your BMI:
+            <span class="final-value">{{ bmi ? (bmi | number: '1.1-2') : 'Calculate to see results' }}</span>
+          </p>
+          <p>
+            Category: <span class="category">{{ bmiCategory || 'N/A' }}</span>
+          </p>
+          <p>Healthy BMI Range: 18.5 - 25</p>
+        </mat-card-content>
+      </mat-card>
+  </section>
+  
+    <section class="result-section">
+      <mat-card>
+        <mat-card-content>
+          <h2>Ponderal Index Results</h2>
+          <p>
+            Your PI:
+            <span class="final-value">{{ pi ? (pi | number: '1.1-2') : 'Calculate to see results' }}</span>
+          </p>
+          <p>
+            Category: <span class="category">{{ piCategory || 'N/A' }}</span>
+          </p>
+          <p>Healthy PI Range: 11 - 15 (Adults)</p>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  
+    <!-- BMI & PI Information Section -->
+    <section class="info-section">
+      <mat-card>
+        <mat-card-content>
+          <h2>BMI Categories</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>BMI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Underweight</td>
+                <td>Less than 18.5</td>
+              </tr>
+              <tr>
+                <td>Healthy weight</td>
+                <td>18.5 - 25</td>
+              </tr>
+              <tr>
+                <td>Overweight</td>
+                <td>25 - 30</td>
+              </tr>
+              <tr>
+                <td>Class 1 Obesity</td>
+                <td>30 - 35</td>
+              </tr>
+              <tr>
+                <td>Class 2 Obesity</td>
+                <td>35 - 40</td>
+              </tr>
+              <tr>
+                <td>Class 3 Obesity</td>
+                <td>More than 40</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card>
+        <mat-card-content>
+          <h2>Ponderal Index (PI) Categories</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>PI</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Underweight</td>
+                <td>Less than 11</td>
+              </tr>
+              <tr>
+                <td>Normal weight</td>
+                <td>11 - 15</td>
+              </tr>
+              <tr>
+                <td>Overweight</td>
+                <td>15 - 17</td>
+              </tr>
+              <tr>
+                <td>Obese</td>
+                <td>More than 17</td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </section>
+  </div>
+  

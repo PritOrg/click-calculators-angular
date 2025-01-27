@@ -1,0 +1,167 @@
+<div class="converter-container">
+  <!-- Header Section -->
+  <header class="calculator-header">
+    <div class="header-content">
+      <h1>
+        <mat-icon aria-hidden="true">fitness_center</mat-icon>
+        Ideal Weight Calculator
+      </h1>
+      <p class="description">
+        Calculate your ideal weight using scientific formulas
+      </p>
+    </div>
+  </header>
+
+  <!-- Personal Details Section -->
+  <mat-expansion-panel expanded class="personal-details-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon aria-hidden="true">person</mat-icon>
+        Personal Details
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="input-section">
+      <!-- Gender Selection -->
+      <div class="gender-selection">
+        <label for="gender">Sex:</label>
+        <mat-radio-group
+          [(ngModel)]="gender"
+          id="gender"
+          (ngModelChange)="calculateIdealWeight()"
+        >
+          <mat-radio-button value="female" aria-label="Female">Female</mat-radio-button>
+          <mat-radio-button value="male" aria-label="Male">Male</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <!-- Height Input -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Height</mat-label>
+        <input
+          matInput
+          [(ngModel)]="height"
+          placeholder="Enter your height"
+          type="number"
+          min="0"
+          required
+          aria-label="Height"
+          (ngModelChange)="calculateIdealWeight()"
+        />
+        <mat-select
+          [(ngModel)]="heightUnit"
+          aria-label="Height Unit"
+          (ngModelChange)="calculateIdealWeight()"
+        >
+          <mat-option value="cm">cm</mat-option>
+          <mat-option value="inches">inches</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!height">Height is required</mat-error>
+      </mat-form-field>
+
+      <!-- Current Weight -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Current Weight</mat-label>
+        <input
+          matInput
+          [(ngModel)]="currentWeight"
+          placeholder="Enter your weight"
+          type="number"
+          min="0"
+          required
+          aria-label="Current Weight"
+          (ngModelChange)="calculateIdealWeight()"
+        />
+        <mat-select
+          [(ngModel)]="weightUnit"
+          aria-label="Weight Unit"
+          (ngModelChange)="calculateIdealWeight()"
+        >
+          <mat-option value="kg">kg</mat-option>
+          <mat-option value="lbs">lbs</mat-option>
+        </mat-select>
+        <mat-error *ngIf="!currentWeight">Weight is required</mat-error>
+      </mat-form-field>
+
+      <!-- BMI Checkbox -->
+      <mat-checkbox
+        [(ngModel)]="defaultBMI"
+        (change)="onDefaultBMIChecked($event.checked)"
+        aria-label="Default BMI"
+      >
+        Use default target BMI of 22
+      </mat-checkbox>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Ideal Weight Calculation Section -->
+  <section class="result-section">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ideal Weight Formula</mat-label>
+      <mat-select
+        [(ngModel)]="selectedFormula"
+        (ngModelChange)="calculateIdealWeight()"
+        aria-label="Ideal Weight Formula"
+      >
+        <mat-option *ngFor="let formula of formulas" [value]="formula">
+          {{ formula.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Results Display -->
+    <mat-card class="result-card">
+      <mat-card-content>
+        <div *ngIf="loading" class="loading-spinner">
+          <mat-spinner diameter="40"></mat-spinner>
+        </div>
+        <div class="result-content" *ngIf="!loading">
+          <p>
+            Your Ideal Weight:
+            <span class="final-value">
+              {{ idealWeight || 'Calculate to see results' | number: '1.1-2' }}
+            </span>
+            {{ weightUnit }}
+          </p>
+          <p *ngIf="healthyRange">
+            Healthy Weight Range:
+            <span class="final-value">
+              {{ healthyRange.min | number: '1.1-2' }} - {{ healthyRange.max | number: '1.1-2' }}
+              {{ weightUnit }}
+            </span>
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Calculation Steps -->
+  <mat-expansion-panel class="steps-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon aria-hidden="true">lightbulb</mat-icon>
+        Calculation Steps
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="calculation-steps">
+      <h3>Steps for {{ selectedFormula?.name || 'Selected Formula' }}</h3>
+      <ol>
+        <li *ngFor="let step of calculationSteps">{{ step }}</li>
+      </ol>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Information Section -->
+  <section class="information-section">
+    <mat-card>
+      <mat-card-content>
+        <h2>About This Calculator</h2>
+        <p>
+          This ideal weight calculator uses six scientific formulas to determine your ideal body weight based on your height, gender, and age.
+          Each formula provides a different perspective, allowing you to select the one most suited to your goals or doctor's recommendations.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>
