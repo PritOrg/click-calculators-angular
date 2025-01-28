@@ -1,73 +1,58 @@
 <div class="converter-container fade-in">
-    <div class="calculator-header">
-      <h1>Salary Calculator</h1>
-      <div class="description">
-        <mat-icon>info</mat-icon>
-        <span>Calculate your monthly, biweekly, weekly, daily, and hourly wages based on your annual salary.</span>
-      </div>
+  <div class="calculator-header">
+    <h1>Salary Calculator</h1>
+    <div class="description">
+      <mat-icon>info</mat-icon>
+      <span>Calculate your monthly, biweekly, weekly, daily, and hourly wages based on your annual salary.</span>
     </div>
-  
-    <div class="input-section">
-      <mat-form-field appearance="outline">
-        <mat-label>Annual Salary</mat-label>
-        <input 
-          matInput 
-          [(ngModel)]="salary" 
-          (input)="calculateSalaries()" 
-          placeholder="Enter annual salary"
-          id="salary" 
-          type="number"/>
-        <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Hours Worked Per Week</mat-label>
-        <input 
-          matInput 
-          [(ngModel)]="hoursPerWeek" 
-          (input)="calculateSalaries()" 
-          placeholder="Enter hours per week"
-          id="hoursPerWeek" 
-          type="number"/>
-        <mat-icon matSuffix class="suffix-icon">schedule</mat-icon>
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline">
-        <mat-label>Weeks Worked Per Year</mat-label>
-        <input 
-          matInput 
-          [(ngModel)]="weeksPerYear" 
-          (input)="calculateSalaries()" 
-          placeholder="Enter weeks per year"
-          id="weeksPerYear" 
-          type="number"/>
-        <mat-icon matSuffix class="suffix-icon">calendar_today</mat-icon>
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" (click)="calculateSalaries()">
-        <mat-icon>calculate</mat-icon>
-        Calculate
-      </button>
-    </div>
-  
-    <div class="result-section" *ngIf="monthlySalary || biweeklySalary || weeklySalary || dailySalary || hourlyWage">
-      <mat-card class="result-card" >
-        <mat-card-header>
-          <mat-icon>check_circle</mat-icon>
-          <mat-card-title>Result</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <div class="result-formula">
-            <p><strong>Monthly Salary:</strong> <span class="final-value">${{ monthlySalary.toFixed(2) }}</span></p>
-            <p><strong>Biweekly Salary:</strong> <span class="final-value">${{ biweeklySalary.toFixed(2) }}</span></p>
-            <p><strong>Weekly Salary:</strong> <span class="final-value">${{ weeklySalary.toFixed(2) }}</span></p>
-            <p><strong>Daily Salary:</strong> <span class="final-value">${{ dailySalary.toFixed(2) }}</span></p>
-            <p><strong>Hourly Wage:</strong> <span class="final-value">${{ hourlyWage.toFixed(2) }}</span></p>
-          </div>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  
+  </div>
+
+  <div class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Annual Salary</mat-label>
+      <input matInput [(ngModel)]="salary" (input)="calculateSalaries()" placeholder="Enter annual salary" id="salary"
+        type="number" />
+      <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Hours Worked Per Week</mat-label>
+      <input matInput [(ngModel)]="hoursPerWeek" (input)="calculateSalaries()" placeholder="Enter hours per week"
+        id="hoursPerWeek" type="number" />
+      <mat-icon matSuffix class="suffix-icon">schedule</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Weeks Worked Per Year</mat-label>
+      <input matInput [(ngModel)]="weeksPerYear" (input)="calculateSalaries()" placeholder="Enter weeks per year"
+        id="weeksPerYear" type="number" />
+      <mat-icon matSuffix class="suffix-icon">calendar_today</mat-icon>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="calculateSalaries()">
+      <mat-icon>calculate</mat-icon>
+      Calculate
+    </button>
+  </div>
+
+  <div class="result-section" *ngIf="monthlySalary || biweeklySalary || weeklySalary || dailySalary || hourlyWage">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-icon>check_circle</mat-icon>
+        <mat-card-title>Result</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="result-formula">
+          <p><strong>Monthly Salary:</strong> <span class="final-value">${{ monthlySalary.toFixed(2) }}</span></p>
+          <p><strong>Biweekly Salary:</strong> <span class="final-value">${{ biweeklySalary.toFixed(2) }}</span></p>
+          <p><strong>Weekly Salary:</strong> <span class="final-value">${{ weeklySalary.toFixed(2) }}</span></p>
+          <p><strong>Daily Salary:</strong> <span class="final-value">${{ dailySalary.toFixed(2) }}</span></p>
+          <p><strong>Hourly Wage:</strong> <span class="final-value">${{ hourlyWage.toFixed(2) }}</span></p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <section class="result-section">
     <mat-expansion-panel class="steps-panel">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -75,7 +60,7 @@
           Step-by-Step Calculation
         </mat-panel-title>
       </mat-expansion-panel-header>
-  
+
       <div class="solution-content">
         <h2>Salary Breakdown Formulas</h2>
         <p>We use the following formulas to break down your annual salary:</p>
@@ -86,7 +71,7 @@
           <p>Daily Salary = Weekly Salary / 5</p>
           <p>Hourly Wage = Weekly Salary / Hours Worked Per Week</p>
         </div>
-  
+
         <mat-vertical-stepper>
           <mat-step>
             <ng-template matStepLabel>Calculate Monthly Salary</ng-template>
@@ -94,30 +79,30 @@
               <p>Monthly Salary = {{ salary }} / 12 = {{ monthlySalary.toFixed(2) }}</p>
             </div>
           </mat-step>
-  
+
           <mat-step>
             <ng-template matStepLabel>Calculate Biweekly Salary</ng-template>
             <div class="calculation-box">
               <p>Biweekly Salary = {{ salary }} / ({{ weeksPerYear }} / 2) = {{ biweeklySalary.toFixed(2) }}</p>
             </div>
           </mat-step>
-  
+
           <mat-step>
             <ng-template matStepLabel>Calculate Weekly Salary</ng-template>
             <div class="calculation-box">
               <p>Weekly Salary = {{ salary }} / {{ weeksPerYear }} = {{ weeklySalary.toFixed(2) }}</p>
             </div>
           </mat-step>
-  
+
           <mat-step>
             <ng-template matStepLabel>Calculate Daily Salary</ng-template>
             <div class="calculation-box">
               <p>Daily Salary = {{ weeklySalary.toFixed(2) }} / 5 = {{ dailySalary.toFixed(2) }}</p>
             </div>
           </mat-step>
-  
+
           <mat-step>
-            <ng-template matStepLabel >Calculate Hourly Wage</ng-template>
+            <ng-template matStepLabel>Calculate Hourly Wage</ng-template>
             <div class="calculation-box">
               <p>Hourly Wage = {{ weeklySalary.toFixed(2) }} / {{ hoursPerWeek }} = {{ hourlyWage.toFixed(2) }}</p>
             </div>
@@ -125,7 +110,8 @@
         </mat-vertical-stepper>
       </div>
     </mat-expansion-panel>
-  
+  </section>
+  <section class="result-section">
     <mat-expansion-panel class="examples-panel">
       <mat-expansion-panel-header>
         <mat-panel-title>
@@ -133,7 +119,7 @@
           Additional Information
         </mat-panel-title>
       </mat-expansion-panel-header>
-  
+
       <div class="solution-content">
         <h2>Example Calculations</h2>
         <p>If you earn $35,000 per year, working 40 hours per week for 52 weeks:</p>
@@ -144,5 +130,5 @@
         <p>Hourly Wage = $16.83</p>
       </div>
     </mat-expansion-panel>
-  </div>
-  
+  </section>
+</div>

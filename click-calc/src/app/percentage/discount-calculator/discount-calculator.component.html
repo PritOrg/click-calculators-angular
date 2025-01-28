@@ -1,114 +1,118 @@
 <div class="converter-container fade-in">
-  <div class="calculator-header">
-    <h1>Discount Calculator</h1>
-    <div class="description">
-      <mat-icon>info</mat-icon>
-      <span>Calculate the discount amount and final price of an item based on the original price and discount
-        percentage.</span>
+    <div class="calculator-header">
+        <h1>Discount Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>Calculate the discount amount and final price of an item based on the original price and discount
+                percentage.</span>
+        </div>
     </div>
-  </div>
 
-  <div class="input-section">
-    <mat-form-field appearance="outline">
-      <mat-label>Original Price</mat-label>
-      <input matInput type="number" [(ngModel)]="originalPrice" (input)="calculateDiscount()"
-        placeholder="Enter original price" id="originalPrice" />
-      <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
-    </mat-form-field>
+    <div class="input-section">
+        <mat-form-field appearance="outline">
+            <mat-label>Original Price</mat-label>
+            <input matInput type="number" [(ngModel)]="originalPrice" (input)="calculateDiscount()"
+                placeholder="Enter original price" id="originalPrice" />
+            <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
+        </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Discount Percentage</mat-label>
-      <input matInput type="number" [(ngModel)]="discountPercentage" (input)="calculateDiscount()"
-        placeholder="Enter discount percentage" id="discountPercentage" />
-      <mat-icon matSuffix class="suffix-icon">percent</mat-icon>
-    </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Discount Percentage</mat-label>
+            <input matInput type="number" [(ngModel)]="discountPercentage" (input)="calculateDiscount()"
+                placeholder="Enter discount percentage" id="discountPercentage" />
+            <mat-icon matSuffix class="suffix-icon">percent</mat-icon>
+        </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="calculateDiscount()">
-      <mat-icon>calculate</mat-icon>
-      Calculate Discount
-    </button>
-  </div>
-
-  <div class="result-section" *ngIf="finalPrice !== null">
-    <mat-card class="result-card">
-      <mat-card-header>
-        <mat-icon>check_circle</mat-icon>
-        <mat-card-title>Results</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="result-formula">
-          <p>Discount Amount:<span class="final-value"> ${{ discountAmount }}</span> </p>
-          <p>Final Price:<span class="final-value"> ${{ finalPrice }}</span></p>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <mat-expansion-panel class="steps-panel">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>school</mat-icon>
-        Step-by-Step Solution
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="solution-content">
-      <h2>Calculating Discount and Final Price</h2>
-      <div class="formula-card">
-        <p>Discount Formula: Discount = Original Price × Discount % / 100</p>
-        <p>Final Price Formula: Final Price = Original Price − Discount</p>
-      </div>
-
-      <mat-vertical-stepper>
-        <mat-step>
-          <ng-template matStepLabel>Calculate the Discount Amount</ng-template>
-          <div class="calculation-box">
-            <p>{{ originalPrice }} × {{ discountPercentage }} / 100 = {{ discountAmount }}</p>
-          </div>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Calculate the Final Price</ng-template>
-          <div class="formula-box">
-            <p>{{ originalPrice }} - {{ discountAmount }} = {{ finalPrice }}</p>
-          </div>
-        </mat-step>
-      </mat-vertical-stepper>
+        <button mat-raised-button color="primary" (click)="calculateDiscount()">
+            <mat-icon>calculate</mat-icon>
+            Calculate Discount
+        </button>
     </div>
-  </mat-expansion-panel>
 
-  <mat-expansion-panel class="steps-panel">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>tips_and_updates</mat-icon>
-        Examples
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="solution-content">
-      <h2>Example Calculations</h2>
-      <div class="example-box">
-        <h4><strong>Example 1:</strong></h4> 10% discount on a $110 item 
-        <div class="formula-box">
-          <p>Original Price: $110</p>
-          <p>Discount Amount: 110 × 0.1 = 11</p>
-          <p>Final Price: 110 - 11 = 99</p>
-        </div>
-
-        <h4><strong>Example 2:</strong></h4> 10% discount on a $120 item 
-        <div class="formula-box">
-          <p>Original Price: $120</p>
-          <p>Discount Amount: 120 × 0.1 = 12</p>
-          <p>Final Price: 120 - 12 = 108</p>
-        </div>
-
-        <h4><strong>Example 3:</strong></h4> 10% discount on a $150 item 
-        <div class="formula-box">
-          <p>Original Price: $150</p>
-          <p>Discount Amount: 150 × 0.1 = 15</p>
-          <p>Final Price: 150 - 15 = 135</p>
-        </div>
-      </div>
+    <div class="result-section" *ngIf="finalPrice !== null">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Results</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="result-formula">
+                    <p>Discount Amount:<span class="final-value"> ${{ discountAmount }}</span> </p>
+                    <p>Final Price:<span class="final-value"> ${{ finalPrice }}</span></p>
+                </div>
+            </mat-card-content>
+        </mat-card>
     </div>
-  </mat-expansion-panel>
+    <section class="result-section">
+
+        <mat-expansion-panel class="steps-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>school</mat-icon>
+                    Step-by-Step Solution
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="solution-content">
+                <h2>Calculating Discount and Final Price</h2>
+                <div class="formula-card">
+                    <p>Discount Formula: Discount = Original Price × Discount % / 100</p>
+                    <p>Final Price Formula: Final Price = Original Price − Discount</p>
+                </div>
+
+                <mat-vertical-stepper>
+                    <mat-step>
+                        <ng-template matStepLabel>Calculate the Discount Amount</ng-template>
+                        <div class="calculation-box">
+                            <p>{{ originalPrice }} × {{ discountPercentage }} / 100 = {{ discountAmount }}</p>
+                        </div>
+                    </mat-step>
+
+                    <mat-step>
+                        <ng-template matStepLabel>Calculate the Final Price</ng-template>
+                        <div class="formula-box">
+                            <p>{{ originalPrice }} - {{ discountAmount }} = {{ finalPrice }}</p>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <section class="result-section">
+
+        <mat-expansion-panel class="steps-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>tips_and_updates</mat-icon>
+                    Examples
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="solution-content">
+                <h2>Example Calculations</h2>
+                <div class="example-box">
+                    <h4><strong>Example 1:</strong></h4> 10% discount on a $110 item
+                    <div class="formula-box">
+                        <p>Original Price: $110</p>
+                        <p>Discount Amount: 110 × 0.1 = 11</p>
+                        <p>Final Price: 110 - 11 = 99</p>
+                    </div>
+
+                    <h4><strong>Example 2:</strong></h4> 10% discount on a $120 item
+                    <div class="formula-box">
+                        <p>Original Price: $120</p>
+                        <p>Discount Amount: 120 × 0.1 = 12</p>
+                        <p>Final Price: 120 - 12 = 108</p>
+                    </div>
+
+                    <h4><strong>Example 3:</strong></h4> 10% discount on a $150 item
+                    <div class="formula-box">
+                        <p>Original Price: $150</p>
+                        <p>Discount Amount: 150 × 0.1 = 15</p>
+                        <p>Final Price: 150 - 15 = 135</p>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+    </section>
 </div>

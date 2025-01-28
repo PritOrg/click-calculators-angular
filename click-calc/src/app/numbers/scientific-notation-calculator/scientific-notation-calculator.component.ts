@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-scientific-notation-calculator',
   templateUrl: './scientific-notation-calculator.component.html',
-  styleUrl: './scientific-notation-calculator.component.css'
+  styleUrl: './scientific-notation-calculator.component.css',
+  standalone:false
+
 })
 export class ScientificNotationCalculatorComponent {
   inputNumber: string = '100'; // User input

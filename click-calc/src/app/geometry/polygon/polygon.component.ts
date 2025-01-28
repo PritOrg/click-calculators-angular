@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-polygon',
   templateUrl: './polygon.component.html',
   styleUrls: ['./polygon.component.css'],
+  standalone:false
+
 })
 export class PolygonComponent implements OnInit {
   sides: number = 3; // Default number of sides

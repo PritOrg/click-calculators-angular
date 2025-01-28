@@ -10,18 +10,11 @@
   <div class="input-section">
     <mat-form-field appearance="outline">
       <mat-label>Enter angle in degrees</mat-label>
-      <input matInput 
-             type="number" 
-             [(ngModel)]="angle" 
-             (input)="calculateRadians()" 
-             placeholder="Ex: 180"
-             id="angle" />
+      <input matInput type="number" [(ngModel)]="angle" (input)="calculateRadians()" placeholder="Ex: 180" id="angle" />
       <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
     </mat-form-field>
-    
-    <button mat-raised-button 
-            color="primary" 
-            (click)="calculateRadians()">
+
+    <button mat-raised-button color="primary" (click)="calculateRadians()">
       <mat-icon>calculate</mat-icon>
       Convert to Radians
     </button>
@@ -41,65 +34,67 @@
       </mat-card-content>
     </mat-card>
   </div>
+  <section class="result-section">
+    <mat-expansion-panel class="steps-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>school</mat-icon>
+          Step-by-Step Solution
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-  <mat-expansion-panel class="steps-panel">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>school</mat-icon>
-        Step-by-Step Solution
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+      <div class="solution-content">
+        <h2>Converting Degrees to Radians</h2>
 
-    <div class="solution-content">
-      <h2>Converting Degrees to Radians</h2>
-      
-      <div class="formula-card">
-        <p>Conversion Formula: α rad = α° × π/180</p>
+        <div class="formula-card">
+          <p>Conversion Formula: α rad = α° × π/180</p>
+        </div>
+
+        <mat-vertical-stepper>
+          <mat-step>
+            <ng-template matStepLabel>Understand the Formula</ng-template>
+            <div class="calculation-box">
+              <p>To convert degrees to radians, multiply the angle by π/180</p>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Plug in the Values</ng-template>
+            <div class="calculation-box">
+              <p>{{angle}}° × π/180</p>
+            </div>
+          </mat-step>
+
+          <mat-step>
+            <ng-template matStepLabel>Calculate the Result</ng-template>
+            <div class="formula-box">
+              <p>= {{radians}} radians</p>
+              <p>≈ {{decimalRadians.toFixed(10)}} radians (decimal form)</p>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
       </div>
+    </mat-expansion-panel>
+  </section>
+  <section class="result-section">
+    <mat-expansion-panel class="steps-panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>tips_and_updates</mat-icon>
+          Additional Information
+        </mat-panel-title>
+      </mat-expansion-panel-header>
 
-      <mat-vertical-stepper>
-        <mat-step>
-          <ng-template matStepLabel>Understand the Formula</ng-template>
-          <div class="calculation-box">
-            <p>To convert degrees to radians, multiply the angle by π/180</p>
-          </div>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Plug in the Values</ng-template>
-          <div class="calculation-box">
-            <p>{{angle}}° × π/180</p>
-          </div>
-        </mat-step>
-
-        <mat-step>
-          <ng-template matStepLabel>Calculate the Result</ng-template>
-          <div class="formula-box">
-            <p>= {{radians}} radians</p>
-            <p>≈ {{decimalRadians.toFixed(10)}} radians (decimal form)</p>
-          </div>
-        </mat-step>
-      </mat-vertical-stepper>
-    </div>
-  </mat-expansion-panel>
-
-  <mat-expansion-panel class="steps-panel">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        <mat-icon>tips_and_updates</mat-icon>
-        Additional Information
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-    <div class="solution-content">
-      <h2>Common Angle Conversions</h2>
-      <div class="formula-box">
-        <p>180° = π radians</p>
-        <p>90° = π/2 radians</p>
-        <p>60° = π/3 radians</p>
-        <p>45° = π/4 radians</p>
-        <p>30° = π/6 radians</p>
+      <div class="solution-content">
+        <h2>Common Angle Conversions</h2>
+        <div class="formula-box">
+          <p>180° = π radians</p>
+          <p>90° = π/2 radians</p>
+          <p>60° = π/3 radians</p>
+          <p>45° = π/4 radians</p>
+          <p>30° = π/6 radians</p>
+        </div>
       </div>
-    </div>
-  </mat-expansion-panel>
+    </mat-expansion-panel>
+  </section>
 </div>

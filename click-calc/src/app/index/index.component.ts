@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-index',
+  standalone: false,
+  
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrl: './index.component.css'
 })
 export class IndexComponent {
   calculatorSections = [

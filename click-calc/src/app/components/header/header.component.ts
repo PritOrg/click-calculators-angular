@@ -4,12 +4,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-header',
+  standalone: false,
+  
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  standalone:false
-
+  styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   @Input() sidenav!: MatSidenav;
   isMobile = false;
   isDarkMode: boolean = false;

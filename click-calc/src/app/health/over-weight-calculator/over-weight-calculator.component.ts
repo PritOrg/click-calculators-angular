@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-over-weight-calculator',
+  standalone: false,
+  
   templateUrl: './over-weight-calculator.component.html',
   styleUrl: './over-weight-calculator.component.css'
 })

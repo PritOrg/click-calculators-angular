@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-long-division',
   templateUrl: './long-division.component.html',
   styleUrls: ['./long-division.component.css'],
+  standalone:false
+
 })
 export class LongDivisionComponent {
   dividend: number | null = 752834242; // Default example dividend

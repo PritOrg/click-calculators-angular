@@ -10,8 +10,9 @@ interface TableRow {
 
 @Component({
   selector: 'app-table-generator',
+  standalone:false,
   templateUrl: './table-generator.component.html',
-  styleUrls: ['./table-generator.component.css']
+  styleUrls: ['./table-generator.component.css'],
 })
 export class TableGeneratorComponent {
   selectedOperation: string = 'addition';
