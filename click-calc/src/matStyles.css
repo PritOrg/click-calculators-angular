@@ -1,0 +1,188 @@
+/* Material Theme Colors */
+:root {
+    --mat-primary: #1976d2;
+    --mat-primary-darker: #1565c0;
+    --mat-primary-lighter: #42a5f5;
+    --mat-accent: #ff4081;
+    --mat-accent-darker: #f50057;
+    --mat-accent-lighter: #ff80ab;
+    --mat-warn: #f44336;
+    --mat-warn-darker: #d32f2f;
+    --mat-warn-lighter: #ef5350;
+    --mat-background: #ffffff;
+    --mat-surface: #ffffff;
+    --mat-text-primary: rgba(0, 0, 0, 0.87);
+    --mat-text-secondary: rgba(0, 0, 0, 0.54);
+    --mat-text-disabled: rgba(0, 0, 0, 0.38);
+    --mat-divider: rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Dark mode colors */
+  .dark-mode {
+    --mat-primary: #90caf9;
+    --mat-primary-darker: #64b5f6;
+    --mat-primary-lighter: #bbdefb;
+    --mat-accent: #ff80ab;
+    --mat-accent-darker: #ff4081;
+    --mat-accent-lighter: #ffc1e3;
+    --mat-warn: #ef9a9a;
+    --mat-warn-darker: #e57373;
+    --mat-warn-lighter: #ffcdd2;
+    --mat-background: #303030;
+    --mat-surface: #424242;
+    --mat-text-primary: rgba(255, 255, 255, 0.87);
+    --mat-text-secondary: rgba(255, 255, 255, 0.60);
+    --mat-text-disabled: rgba(255, 255, 255, 0.38);
+    --mat-divider: rgba(255, 255, 255, 0.12);
+  }
+  
+  /* Material Form Field Styles */
+  ::ng-deep .mat-form-field {
+    width: 100%;
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: var(--mat-primary);
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+    color: var(--mat-primary);
+  }
+  
+  ::ng-deep .mat-form-field-label {
+    color: var(--mat-text-secondary) !important;
+  }
+  
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+    color: var(--mat-primary) !important;
+  }
+  
+  ::ng-deep .mat-input-element {
+    color: var(--mat-text-primary) !important;
+  }
+  
+  /* Making input text black in light mode */
+  ::ng-deep .mat-input-element {
+    color: black !important;
+  }
+  
+  .dark-mode ::ng-deep .mat-input-element {
+    color: var(--mat-text-primary) !important;
+  }
+  
+  /* Material Button Styles */
+  ::ng-deep .mat-raised-button.mat-primary {
+    background-color: var(--mat-primary);
+    color: white;
+  }
+  
+  ::ng-deep .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  
+  /* Material Card Styles */
+  ::ng-deep .mat-card {
+    background-color: var(--mat-surface);
+    color: var(--mat-text-primary);
+  }
+  
+  /* Material Stepper Styles */
+  ::ng-deep .mat-stepper-vertical {
+    background-color: var(--mat-surface);
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-icon {
+    background-color: var(--mat-primary);
+    color: white;
+  }
+  
+  ::ng-deep .mat-step-header .mat-step-label {
+    color: var(--mat-text-primary);
+  }
+  
+  /* Material Expansion Panel Styles */
+  ::ng-deep .mat-expansion-panel {
+    background-color: var(--mat-surface);
+    color: var(--mat-text-primary);
+  }
+  
+  ::ng-deep .mat-expansion-panel-header-title {
+    color: var(--mat-text-primary);
+  }
+  
+  /* Material Icon Styles */
+  ::ng-deep .mat-icon {
+    color: var(--mat-primary);
+  }
+  
+  /* Material Input States */
+  ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: var(--mat-primary);
+  }
+  
+  ::ng-deep .mat-form-field-invalid .mat-form-field-label {
+    color: var(--mat-warn) !important;
+  }
+  
+  ::ng-deep .mat-form-field-invalid .mat-form-field-outline {
+    color: var(--mat-warn);
+  }
+  
+  /* Material Select Styles */
+  ::ng-deep .mat-select-value {
+    color: var(--mat-text-primary);
+  }
+  
+  ::ng-deep .mat-select-arrow {
+    color: var(--mat-text-secondary);
+  }
+  
+  ::ng-deep .mat-select-panel {
+    background-color: var(--mat-surface);
+  }
+  
+  ::ng-deep .mat-option {
+    color: var(--mat-text-primary);
+  }
+  
+  ::ng-deep .mat-option:hover:not(.mat-option-disabled) {
+    background-color: rgba(0, 0, 0, 0.04);
+  }
+  
+  /* Material Checkbox Styles */
+  ::ng-deep .mat-checkbox-frame {
+    border-color: var(--mat-text-secondary);
+  }
+  
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: var(--mat-primary);
+  }
+  
+  /* Material Radio Button Styles */
+  ::ng-deep .mat-radio-outer-circle {
+    border-color: var(--mat-text-secondary);
+  }
+  
+  ::ng-deep .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+    border-color: var(--mat-primary);
+  }
+  
+  ::ng-deep .mat-radio-button.mat-primary .mat-radio-inner-circle {
+    background-color: var(--mat-primary);
+  }
+  
+  /* Material Slider Styles */
+  ::ng-deep .mat-slider-track-background {
+    background-color: var(--mat-text-disabled);
+  }
+  
+  ::ng-deep .mat-slider-track-fill {
+    background-color: var(--mat-primary);
+  }
+  
+  ::ng-deep .mat-slider-thumb {
+    background-color: var(--mat-primary);
+  }

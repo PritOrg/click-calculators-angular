@@ -1,0 +1,66 @@
+.header-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  .menu-icon {
+    margin-right: 8px;
+  }
+  
+  /* Mobile Sidenav Styles */
+  ::ng-deep .mobile-sidenav {
+    min-width: 280px;
+    max-width: 80vw;
+  
+    .sidenav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px;
+      background-color: #00796b;
+      color: white;
+    }
+  
+    .mobile-logo {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+  
+    .mat-expansion-panel {
+      border-radius: 0;
+      box-shadow: none;
+    }
+  
+    .mat-expansion-panel-header {
+      padding: 0 16px;
+    }
+  
+    .mat-expansion-panel-header-title {
+      align-items: center;
+      gap: 16px;
+    }
+  
+    .mat-nav-list {
+      padding: 0;
+    }
+  
+    .mat-list-item {
+      height: 48px;
+    }
+  }

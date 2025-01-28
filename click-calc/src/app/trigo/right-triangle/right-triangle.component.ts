@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-right-triangle',
   templateUrl: './right-triangle.component.html',
   styleUrls: ['./right-triangle.component.css'],
+  standalone:false
+
 })
 export class RightTriangleComponent {
   sideA: number | null = null;

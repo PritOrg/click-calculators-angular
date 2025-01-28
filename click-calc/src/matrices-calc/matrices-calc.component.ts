@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-matrices-calc',
+  standalone:false,
   templateUrl: './matrices-calc.component.html',
   styleUrl: './matrices-calc.component.css',
-  standalone:false
 
 })
 export class MatricesCalcComponent {

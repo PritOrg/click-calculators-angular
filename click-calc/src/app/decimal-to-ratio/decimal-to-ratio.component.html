@@ -1,0 +1,102 @@
+<div class="converter-container">
+  <!-- Header Section -->
+  <header class="calculator-header">
+    <h1>Decimal, Fraction, and Percentage to Ratio Converter</h1>
+    <p class="description">
+      Convert <strong>Decimals</strong>, <strong>Fractions</strong>, and <strong>Percentages</strong> to Simplified Ratios effortlessly.
+    </p>
+  </header>
+
+  <!-- Calculator Section -->
+  <section class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter Decimal, Fraction, or Percentage</mat-label>
+      <input matInput [(ngModel)]="inputValue" placeholder="e.g., 0.5, 3/4, 50%" (input)="calculateRatio()">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="calculateRatio()">
+      Calculate Ratio
+    </button>
+  </section>
+
+  <!-- Result Section -->
+  <section class="result-section fade-in">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>Result</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="result-formula">Simplified Ratio: <span class="final-value">{{ ratio }}</span></p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Steps Section with Expansion Panel -->
+  <mat-expansion-panel class="steps-panel fade-in mb-4">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>lightbulb</mat-icon>
+        View Step-by-Step Solution
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="solution-content">
+      <h2>Steps to Convert</h2>
+      <mat-vertical-stepper>
+        <!-- Step 1 -->
+        <mat-step>
+          <ng-template matStepLabel>Step 1: Parse the Input</ng-template>
+          <div class="calculation-box">
+            <p>The input <strong>{{ inputValue }}</strong> is parsed into a numeric value.</p>
+          </div>
+        </mat-step>
+
+        <!-- Step 2 -->
+        <mat-step>
+          <ng-template matStepLabel>Step 2: Multiply to Remove Decimals</ng-template>
+          <div class="calculation-box">
+            <p>
+              The numeric value is scaled up to remove decimals, ensuring the denominator is correctly applied.
+            </p>
+          </div>
+        </mat-step>
+
+        <!-- Step 3 -->
+        <mat-step>
+          <ng-template matStepLabel>Step 3: Simplify the Ratio</ng-template>
+          <div class="calculation-box">
+            <p>
+              The ratio is simplified by dividing both numerator and denominator by their greatest common divisor (GCD).
+            </p>
+          </div>
+        </mat-step>
+
+        <!-- Final Step -->
+        <mat-step>
+          <ng-template matStepLabel>Final Ratio</ng-template>
+          <div class="formula-box">
+            <p><strong>Final Ratio:</strong> {{ ratio }}</p>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+    </div>
+  </mat-expansion-panel>
+
+  <!-- Information Section -->
+  <section class="information-section fade-in mt-3">
+    <h2 style="margin-top: 2%;">How It Works</h2>
+    <div class="formula-box">
+      <p>
+        Enter a <strong>decimal</strong> (e.g., <em>0.25</em>), <strong>fraction</strong> (e.g., <em>3/4</em>), or <strong>percentage</strong> (e.g., <em>50%</em>),
+        and the tool simplifies it to a ratio.
+      </p>
+    </div>
+
+    <h2>Examples</h2>
+    <div class="calculation-box">
+      <p><strong>Example 1:</strong> Input <em>0.5</em> → Output Ratio: <em>1:2</em></p>
+      <p><strong>Example 2:</strong> Input <em>75%</em> → Output Ratio: <em>3:4</em></p>
+      <p><strong>Example 3:</strong> Input <em>2.5</em> → Output Ratio: <em>5:2</em></p>
+    </div>
+  </section>
+</div>

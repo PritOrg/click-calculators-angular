@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-prime-factorization',
+  standalone: false,
+  
   templateUrl: './prime-factorization.component.html',
-  styleUrls: ['./prime-factorization.component.css']
+  styleUrl: './prime-factorization.component.css'
 })
 export class PrimeFactorizationComponent {
   inputNumber: number = 100;

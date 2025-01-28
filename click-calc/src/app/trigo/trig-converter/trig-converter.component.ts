@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-trig-converter',
   templateUrl: './trig-converter.component.html',
-  styleUrl: './trig-converter.component.css'
+  styleUrl: './trig-converter.component.css',
+  standalone:false
+
 })
 export class TrigConverterComponent {
   angle: number = 0;

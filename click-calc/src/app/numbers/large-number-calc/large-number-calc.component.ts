@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-large-number-calc',
   templateUrl: './large-number-calc.component.html',
-  styleUrl: './large-number-calc.component.css'
+  styleUrl: './large-number-calc.component.css',
+  standalone:false
+
 })
 export class LargeNumberCalcComponent {
   firstNumber: string = '1'; // First number input

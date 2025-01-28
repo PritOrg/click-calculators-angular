@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DegreesToRadiansComponent } from './trigo/degrees-to-radians/degrees-to-radians.component';
-import { RadiansToDegreesComponent } from './trigo/radians-to-degrees/radians-to-degrees.component';
+import { OverWeightCalculatorComponent } from './health/over-weight-calculator/over-weight-calculator.component';
 import { IndexComponent } from './index/index.component';
+import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime-factorization.component';
+import { LongDivisionComponent } from './numbers/long-division/long-division.component';
+import { ScientificNotationCalculatorComponent } from './numbers/scientific-notation-calculator/scientific-notation-calculator.component';
+import { LargeNumberCalcComponent } from './numbers/large-number-calc/large-number-calc.component';
 import { AddComponent } from './percentage/add/add.component';
 import { DiscountCalculatorComponent } from './percentage/discount-calculator/discount-calculator.component';
-import { TableGeneratorComponent } from './table-generator/table-generator.component';
-import { TrigConverterComponent } from './trigo/trig-converter/trig-converter.component';
-import { TrigCalculatorComponent } from './trigo/trig-calculator/trig-calculator.component';
+import { DecimalToRatioComponent } from './decimal-to-ratio/decimal-to-ratio.component';
 import { SalaryCalculatorComponent } from './salary-calculator/salary-calculator.component';
-import { ComplementaryAngleComponent } from './trigo/complementary-angle/complementary-angle.component';
-import { DecimalToRatioComponent } from './ratio/decimal-to-ratio/decimal-to-ratio.component';
+import { TableGeneratorComponent } from './table-generator/table-generator.component';
 import { RightTriangleComponent } from './trigo/right-triangle/right-triangle.component';
-import { LargeNumberCalcComponent } from './numbers/large-number-calc/large-number-calc.component';
-import { ScientificNotationCalculatorComponent } from './numbers/scientific-notation-calculator/scientific-notation-calculator.component';
-import { LongDivisionComponent } from './numbers/long-division/long-division.component';
-import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
+import { ComplementaryAngleComponent } from './trigo/complementary-angle/complementary-angle.component';
+import { TrigCalculatorComponent } from './trigo/trig-calculator/trig-calculator.component';
+import { TrigConverterComponent } from './trigo/trig-converter/trig-converter.component';
+import { RadiansToDegreesComponent } from './trigo/radians-to-degrees/radians-to-degrees.component';
+import { DegreesToRadiansComponent } from './trigo/degrees-to-radians/degrees-to-radians.component';
 import { PolygonComponent } from './geometry/polygon/polygon.component';
-import { PrimeFactorizationComponent } from './numbers/prime-factorization/prime-factorization.component';
 import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
-import { OverWeightCalculatorComponent } from './health/over-weight-calculator/over-weight-calculator.component';
+import { MatricesCalcComponent } from '../matrices-calc/matrices-calc.component';
 
 const routes: Routes = [
   {
@@ -106,6 +106,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

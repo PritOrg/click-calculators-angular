@@ -4,6 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-ideal-weight-calculator',
   templateUrl: './ideal-weight-calculator.component.html',
   styleUrls: ['./ideal-weight-calculator.component.scss'],
+  standalone:false
+
 })
 export class IdealWeightCalculatorComponent {
   // User Inputs

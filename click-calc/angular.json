@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "click-calc": {
+    "calc": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/click-calc",
+            "outputPath": "dist/calc",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -52,8 +52,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
-                  "maximumError": "4kB"
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
                 }
               ],
               "outputHashing": "all"
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "click-calc:build:production"
+              "buildTarget": "calc:build:production"
             },
             "development": {
-              "buildTarget": "click-calc:build:development"
+              "buildTarget": "calc:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,8 +97,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/cyan-orange.css",
-              "src/styles.css",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": []
           }

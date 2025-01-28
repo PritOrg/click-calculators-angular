@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-discount-calculator',
+  standalone: false,
+  
   templateUrl: './discount-calculator.component.html',
   styleUrl: './discount-calculator.component.css'
 })

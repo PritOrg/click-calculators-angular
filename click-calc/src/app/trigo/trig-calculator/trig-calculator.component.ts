@@ -3,7 +3,9 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-trig-calculator',
   templateUrl: './trig-calculator.component.html',
-  styleUrls: ['./trig-calculator.component.css']
+  styleUrls: ['./trig-calculator.component.css'],
+  standalone:false
+
 })
 export class TrigCalculatorComponent implements OnInit {
   angle: number = 30; // Initial angle

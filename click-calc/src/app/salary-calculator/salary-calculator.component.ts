@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-salary-calculator',
   templateUrl: './salary-calculator.component.html',
-  styleUrls: ['./salary-calculator.component.css']
+  styleUrls: ['./salary-calculator.component.css','../../matStyles.css'],
+  standalone:false
+
 })
 export class SalaryCalculatorComponent {
   salary: number = 35000;

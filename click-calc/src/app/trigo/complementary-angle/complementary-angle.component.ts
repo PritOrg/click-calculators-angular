@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-complementary-angle',
   templateUrl: './complementary-angle.component.html',
-  styleUrls: ['./complementary-angle.component.css']
+  styleUrls: ['./complementary-angle.component.css'],
+  standalone:false
+
 })
 export class ComplementaryAngleComponent {
   angleInput: string = '45';

@@ -16,6 +16,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
       ]),
     ]),
   ],
+  standalone:false
+
 })
 export class DegreesToRadiansComponent {
   angle: number = 180;

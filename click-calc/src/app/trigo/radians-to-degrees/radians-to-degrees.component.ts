@@ -3,7 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-radians-to-degrees',
   templateUrl: './radians-to-degrees.component.html',
-  styleUrls: ['./radians-to-degrees.component.css']
+  styleUrls: ['./radians-to-degrees.component.css'],
+  standalone:false
+  
 })
 export class RadiansToDegreesComponent {
   angle: string = 'π';
