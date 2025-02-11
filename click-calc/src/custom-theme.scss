@@ -1,0 +1,61 @@
+@use '@angular/material' as mat;
+
+// Light Theme Palette
+$light-primary: mat.m2-define-palette(mat.$m2-teal-palette, 600, 400, 800);
+$light-accent: mat.m2-define-palette(mat.$m2-blue-grey-palette, 500, 300, 700);
+$light-warn: mat.m2-define-palette(mat.$m2-deep-orange-palette, 500);
+
+// Dark Theme Palette
+$dark-primary: mat.m2-define-palette(mat.$m2-teal-palette, 300, 200, 500);
+$dark-accent: mat.m2-define-palette(mat.$m2-blue-grey-palette, 200, 100, 300);
+$dark-warn: mat.m2-define-palette(mat.$m2-deep-orange-palette, 300);
+
+$light-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: "'Roboto', sans-serif",
+    $headline-1: mat.m2-define-typography-level(112px, 112px, 300),
+    $headline-2: mat.m2-define-typography-level(56px, 56px, 400),
+    $headline-3: mat.m2-define-typography-level(45px, 48px, 400),
+    $headline-4: mat.m2-define-typography-level(34px, 40px, 400),
+    $headline-5: mat.m2-define-typography-level(24px, 32px, 400),
+    $headline-6: mat.m2-define-typography-level(20px, 32px, 500),
+    $subtitle-1: mat.m2-define-typography-level(16px, 28px, 400),
+    $subtitle-2: mat.m2-define-typography-level(15px, 24px, 400),
+    $body-1: mat.m2-define-typography-level(14px, 20px, 400),
+    $body-2: mat.m2-define-typography-level(14px, 24px, 500),
+    $caption: mat.m2-define-typography-level(12px, 20px, 400),
+    $button: mat.m2-define-typography-level(14px, 14px, 500)
+  ),
+  density: 0
+));
+
+// Define a dark theme
+$dark-theme: mat.m2-define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: "'Roboto', sans-serif"
+  ),
+  density: 0
+));
+
+body {
+  @include mat.all-component-themes($light-theme);
+  ::ng-deep .mat-horizontal-stepper-header-container {
+    border: solid 1px red; 
+  }
+  
+  
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import {  Component,Renderer2  } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,12 @@ export class AppComponent {
   title = 'calc';
   isDarkMode: boolean = false;
 
+  constructor(
+    private renderer: Renderer2,
+    private overlayContainer: OverlayContainer,
+  ) {}
+
   ngOnInit() {
-    // Load theme preference from localStorage
     this.isDarkMode = localStorage.getItem('theme') === 'dark';
     this.updateTheme();
   }
@@ -19,14 +24,19 @@ export class AppComponent {
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.updateTheme();
+    console.log('Theme toggled'); 
+    window.location.reload();
   }
 
   updateTheme() {
     if (this.isDarkMode) {
-      document.documentElement.classList.toggle('dark');
+      this.renderer.addClass(document.body, 'dark-theme');
+      this.overlayContainer.getContainerElement().classList.add('dark-theme');
+
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.toggle('dark');
+      this.renderer.removeClass(document.body, 'dark-theme');
+      this.overlayContainer.getContainerElement().classList.remove('dark-theme');
       localStorage.setItem('theme', 'light');
     }
   }

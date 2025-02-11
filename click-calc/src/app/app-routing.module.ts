@@ -19,7 +19,7 @@ import { RadiansToDegreesComponent } from './trigo/radians-to-degrees/radians-to
 import { DegreesToRadiansComponent } from './trigo/degrees-to-radians/degrees-to-radians.component';
 import { PolygonComponent } from './geometry/polygon/polygon.component';
 import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
-import { MatricesCalcComponent } from '../matrices-calc/matrices-calc.component';
+import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
 
 const routes: Routes = [
   {
@@ -47,7 +47,7 @@ const routes: Routes = [
     component: ComplementaryAngleComponent,
   },
   {
-    path: 'trigo/rihght-triangle',
+    path: 'trigo/right-triangle',
     component: RightTriangleComponent,
   },
   {
@@ -71,7 +71,7 @@ const routes: Routes = [
     component: SalaryCalculatorComponent,
   },
   {
-    path: 'ratio-calculator',
+    path: 'number/ratio-calculator',
     component: DecimalToRatioComponent,
   },
   {

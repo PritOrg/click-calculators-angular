@@ -1,6 +1,6 @@
 {
-  "name": "calc",
-  "version": "0.0.0",
+  "name": "click-calc",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,10 +16,11 @@
     "@angular/compiler": "^19.1.0",
     "@angular/core": "^19.1.0",
     "@angular/forms": "^19.1.0",
-    "@angular/material": "^19.1.1",
+    "@angular/material": "^19.1.2",
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "fuse.js": "^7.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

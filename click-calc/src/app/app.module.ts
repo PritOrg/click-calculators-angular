@@ -47,7 +47,8 @@ import { RadiansToDegreesComponent } from './trigo/radians-to-degrees/radians-to
 import { TableGeneratorComponent } from './table-generator/table-generator.component';
 import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
 import { PolygonComponent } from './geometry/polygon/polygon.component';
-import { MatricesCalcComponent } from '../matrices-calc/matrices-calc.component';
+import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -100,10 +101,12 @@ import { MatricesCalcComponent } from '../matrices-calc/matrices-calc.component'
     MatSlideToggleModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
+     
   ],
   providers: [
     provideAnimationsAsync()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

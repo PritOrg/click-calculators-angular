@@ -32,6 +32,8 @@ export class HeaderComponent {
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.updateTheme();
+    window.location.reload();
+    
   }
   
   updateTheme() {

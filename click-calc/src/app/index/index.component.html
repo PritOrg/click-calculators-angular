@@ -1,41 +1,147 @@
-<div class="calculator-container">
-    <mat-card class="page-header">
-      <mat-card-content>
-        <h1>Calculator Hub</h1>
-        <p>Your comprehensive toolkit for mathematical calculations</p>
-      </mat-card-content>
-    </mat-card>
-  
-    <div class="calculator-sections">
-      <mat-card *ngFor="let section of calculatorSections" class="section-card">
-        <mat-card-header>
-          <div mat-card-avatar class="section-header-image">
-            <mat-icon>{{ section.icon }}</mat-icon>
-          </div>
-          <mat-card-title>{{ section.title }}</mat-card-title>
-        </mat-card-header>
-        
-        <mat-card-content >
-          <div class="calculator-grid">
-            <mat-card *ngFor="let item of section.items" class="calculator-item" >
-              <mat-card-header>
-                <mat-card-title>
-                  <mat-icon>{{ item.icon }}</mat-icon>
-                  {{ item.title }}
-                </mat-card-title>
-              </mat-card-header>
-              <mat-card-content>
-                <p>{{ item.description }}</p>
-              </mat-card-content>
-              <mat-card-actions>
-                <a mat-raised-button color="primary" [routerLink]="item.link">
-                  Explore
-                  <mat-icon>arrow_forward</mat-icon>
-                </a>
-              </mat-card-actions>
-            </mat-card>
-          </div>
-        </mat-card-content>
-      </mat-card>
+<div class="calculator-hub">
+  <!-- Enhanced Header with Gradient Overlay -->
+  <header class="hub-header">
+    <div class="header-content glass-effect">
+      <h1 class="hub-title animate-fade-in">
+        <span class="gradient-text">Calculator Hub</span>
+      </h1>
+      <p class="hub-subtitle animate-fade-in-delay">
+        <span class="highlight">Unlock Mathematical Potential</span> 
+        <span class="subtitle-accent">with Precision Tools</span>
+      </p>
+
+      <!-- Enhanced Search Bar -->
+      <div class="search-container glass-effect animate-fade-in-delay">
+        <mat-form-field appearance="outline">
+          <mat-icon matPrefix class="search-icon">search</mat-icon>
+          <input matInput placeholder="Discover calculators..." 
+                 (input)="searchCalculators($event)" 
+                 class="search-input">
+        </mat-form-field>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <main class="calculator-workspace">
+    <!-- Search Results Section (Only shows if searchResults is not empty) -->
+    <section *ngIf="searchResults.length > 0" class="search-results-section">
+      <h2 class="search-results-title">Search Results</h2>
+      <div class="search-grid">
+        <article *ngFor="let item of searchResults" 
+                 class="calculator-card"
+                 [routerLink]="item.link">
+          
+          <div class="calculator-card-inner glass-effect">
+            <div class="card-header">
+              <div class="calculator-icon gradient-bg">
+                <mat-icon>{{ item.icon }}</mat-icon>
+              </div>
+              <div class="tag-container">
+                <span *ngFor="let tag of item.tags" class="tag gradient-bg">{{tag}}</span>
+              </div>
+            </div>
+
+            <div class="calculator-content">
+              <h3 class="gradient-text">{{ item.title }}</h3>
+              <p>{{ item.description }}</p>
+
+              <ul class="features-list" *ngIf="item.features">
+                <li *ngFor="let feature of item.features">
+                  <mat-icon class="feature-icon gradient-text">check_circle</mat-icon>
+                  <span>{{feature}}</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="calculator-actions">
+              <button mat-icon-button class="info-button glass-effect"
+                      [matTooltip]="'Learn more about ' + item.title"
+                      (click)="$event.stopPropagation();">
+                <mat-icon>info</mat-icon>
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Show main content only if no search results -->
+    <ng-container *ngIf="searchResults.length === 0">
+      <!-- Enhanced Quick Navigation -->
+      <nav class="quick-nav glass-effect" aria-label="Calculator categories">
+        <div class="nav-scroll">
+          <button mat-button *ngFor="let section of calculatorSections" 
+                  class="nav-item gradient-hover">
+            <mat-icon class="nav-icon">{{section.icon}}</mat-icon>
+            <span>{{section.title}}</span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- Enhanced Section Grid -->
+      <div class="section-grid">
+        <section *ngFor="let section of calculatorSections; let i = index" 
+                 [id]="'section-' + section.id"
+                 class="section-card"
+                 [style.--animation-order]="i">
+          
+          <div class="section-header glass-effect">
+            <div class="section-icon gradient-bg">
+              <mat-icon>{{ section.icon }}</mat-icon>
+            </div>
+            <h2>{{ section.title }}</h2>
+            <span class="calculator-count glass-effect">
+              {{section.items.length}} calculators
+            </span>
+          </div>
+
+          <div class="calculator-grid">
+            <article *ngFor="let item of section.items; let j = index" 
+                     class="calculator-card"
+                     [style.--animation-order]="j"
+                     [routerLink]="item.link">
+              
+              <div class="calculator-card-inner glass-effect">
+                <div class="card-header">
+                  <div class="calculator-icon gradient-bg">
+                    <mat-icon>{{ item.icon }}</mat-icon>
+                  </div>
+                  <div class="tag-container">
+                    <span *ngFor="let tag of item.tags" 
+                          class="tag gradient-bg">{{tag}}</span>
+                  </div>
+                </div>
+
+                <div class="calculator-content">
+                  <h3 class="gradient-text">{{ item.title }}</h3>
+                  <p>{{ item.description }}</p>
+
+                  <ul class="features-list" *ngIf="item.features">
+                    <li *ngFor="let feature of item.features">
+                      <mat-icon class="feature-icon gradient-text">check_circle</mat-icon>
+                      <span>{{feature}}</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="calculator-actions">
+                  <button mat-icon-button class="info-button glass-effect"
+                          [matTooltip]="'Learn more about ' + item.title"
+                          (click)="$event.stopPropagation();">
+                    <mat-icon>info</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </ng-container>
+
+    <!-- Enhanced Floating Action Button -->
+    <button mat-fab class="scroll-to-top gradient-bg pulse-animation"
+            (click)="scrollToTop()">
+      <mat-icon>keyboard_arrow_up</mat-icon>
+    </button>
+  </main>
+</div>
