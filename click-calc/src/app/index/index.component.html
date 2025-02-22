@@ -23,7 +23,7 @@
   </header>
 
   <main class="calculator-workspace">
-    <!-- Search Results Section (Only shows if searchResults is not empty) -->
+    <!--  (Only shows if searchResults is not empty) -->
     <section *ngIf="searchResults.length > 0" class="search-results-section">
       <h2 class="search-results-title">Search Results</h2>
       <div class="search-grid">
@@ -67,7 +67,6 @@
 
     <!-- Show main content only if no search results -->
     <ng-container *ngIf="searchResults.length === 0">
-      <!-- Enhanced Quick Navigation -->
       <nav class="quick-nav glass-effect" aria-label="Calculator categories">
         <div class="nav-scroll">
           <button mat-button *ngFor="let section of calculatorSections" 

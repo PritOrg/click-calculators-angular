@@ -1,0 +1,80 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Length Converter</h1>
+      <div class="description">
+        <mat-icon>swap_horiz</mat-icon>
+        <span>Convert between different length units instantly.</span>
+      </div>
+    </div>
+  
+    <!-- Length Converter Input Section -->
+    <section class="conversion-section">
+      <h2>📏 Length Converter</h2>
+      <div class="input-section row">
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Enter Length</mat-label>
+          <mat-icon matSuffix class="suffix-icon">straighten</mat-icon>
+          <input matInput type="number" [(ngModel)]="lengthValue" (input)="convertLength()" placeholder="Enter value" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>From</mat-label>
+          <mat-icon matSuffix class="suffix-icon">compare_arrows</mat-icon>
+          <mat-select [(ngModel)]="lengthFrom" (selectionChange)="convertLength()">
+            <mat-option *ngFor="let unit of lengthUnits" [value]="unit">{{ unit }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>To</mat-label>
+          <mat-icon matSuffix class="suffix-icon">sync_alt</mat-icon>
+          <mat-select [(ngModel)]="lengthTo" (selectionChange)="convertLength()">
+            <mat-option *ngFor="let unit of lengthUnits" [value]="unit">{{ unit }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <!-- Result Display -->
+      <div *ngIf="convertedLength !== null" class="result-section">
+        <mat-card class="result-card">
+          <mat-card-header>
+            <mat-icon>check_circle</mat-icon>
+            <mat-card-title>Converted Length</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ lengthValue }} {{ lengthFrom }} = <strong>{{ convertedLength | number:'1.2-2' }} {{ lengthTo }}</strong></p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+  
+    <!-- Information Section -->
+    <section class="information-section fade-in mt-3">
+      <h2>📘 How Length Conversion Works</h2>
+      <div class="formula-box">
+        <p>
+          Length conversions are performed using standard unit conversion formulas. The calculator uses predefined conversion factors to convert between units.
+        </p>
+        <p class="formula">1 meter (m) = 3.28084 feet (ft)</p>
+        <p class="formula">1 kilometer (km) = 1000 meters (m)</p>
+      </div>
+    </section>
+  
+    <!-- Example Section -->
+    <section class="steps-panel">
+      <mat-expansion-panel class="steps-panel fade-in mb-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>lightbulb</mat-icon>
+            Example Length Conversion
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+  
+        <div class="calculation-box">
+          <p><strong>Example:</strong> Convert 10 meters (m) to feet (ft).</p>
+          <p><strong>Formula:</strong> 1 m = 3.28084 ft</p>
+          <p><strong>Calculation:</strong> 10 m × 3.28084 = 32.8084 ft</p>
+        </div>
+      </mat-expansion-panel>
+    </section>
+  </div>

@@ -49,6 +49,15 @@ import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator
 import { PolygonComponent } from './geometry/polygon/polygon.component';
 import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { SipCalcComponent } from './financial/sip-calc/sip-calc.component';
+import { InterestCalculatorComponent } from './financial/interest-calculator/interest-calculator.component';
+import { EmiCalculatorComponent } from './financial/emi-calculator/emi-calculator.component';
+import { TaxGstCalculatorComponent } from './financial/tax-gst-calculator/tax-gst-calculator.component';
+import { WeightConverterComponent } from './geometry/weight-converter/weight-converter.component';
+import { LengthConverterComponent } from './geometry/length-converter/length-converter.component';
+import { LcmGcdCalculatorComponent } from './numbers/lcm-gcd-calculator/lcm-gcd-calculator.component';
+import { NumberSystemConverterComponent } from './numbers/number-system-converter/number-system-converter.component';
+import { NumberSystemOperationsComponent } from './numbers/number-system-operations/number-system-operations.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +83,15 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     DegreesToRadiansComponent,
     RadiansToDegreesComponent,
     TableGeneratorComponent,
+    SipCalcComponent,
+    InterestCalculatorComponent,
+    EmiCalculatorComponent,
+    TaxGstCalculatorComponent,
+    WeightConverterComponent,
+    LengthConverterComponent,
+    LcmGcdCalculatorComponent,
+    NumberSystemConverterComponent,
+    NumberSystemOperationsComponent,
   ],
   imports: [
     CommonModule,
@@ -102,7 +120,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatButtonToggleModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
-     
+    
   ],
   providers: [
     provideAnimationsAsync()

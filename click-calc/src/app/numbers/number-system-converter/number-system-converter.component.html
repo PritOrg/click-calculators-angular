@@ -1,0 +1,140 @@
+<div class="converter-container fade-in">
+    <!-- Header Section -->
+    <div class="calculator-header">
+        <h1>Number System Converter</h1>
+        <div class="description">
+            <mat-icon>transform</mat-icon>
+            <span>Convert numbers between Binary, Octal, Decimal, Hexadecimal, or any custom base.</span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section">
+        <!-- Enter Number -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Enter Number</mat-label>
+            <mat-icon matSuffix class="suffix-icon">pin</mat-icon>
+            <input matInput [(ngModel)]="inputNumber" (input)="convertNumber()"
+                placeholder="Enter number (e.g., 1011, FF, 17)" />
+        </mat-form-field>
+
+        <!-- From Base Selection -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>From Base</mat-label>
+            <mat-icon matSuffix class="suffix-icon">input</mat-icon>
+            <mat-select [(ngModel)]="fromBase" (selectionChange)="convertNumber()">
+                <mat-option *ngFor="let base of availableBases" [value]="base.value">{{ base.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Custom From Base Input -->
+        <mat-form-field *ngIf="fromBase === 'custom'" appearance="outline" class="input-field">
+            <mat-label>Enter Custom Base</mat-label>
+            <input matInput type="number" [(ngModel)]="customFromBase" (input)="convertNumber()" min="2" max="36"
+                placeholder="Enter custom base (2-36)" />
+        </mat-form-field>
+
+        <!-- To Base Selection -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>To Base</mat-label>
+            <mat-icon matSuffix class="suffix-icon">swap_horiz</mat-icon>
+            <mat-select [(ngModel)]="toBase" (selectionChange)="convertNumber()">
+                <mat-option *ngFor="let base of availableBases" [value]="base.value">{{ base.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Custom To Base Input -->
+        <mat-form-field *ngIf="toBase === 'custom'" appearance="outline" class="input-field">
+            <mat-label>Enter Custom Base</mat-label>
+            <input matInput type="number" [(ngModel)]="customToBase" (input)="convertNumber()" min="2" max="36"
+                placeholder="Enter custom base (2-36)" />
+        </mat-form-field>
+    </div>
+
+    <!-- Convert Button -->
+    <button mat-raised-button color="primary" class="convert-button" [disabled]="!inputNumber"
+        (click)="convertNumber()">
+        Convert
+    </button>
+
+    <!-- Result Section -->
+    <div *ngIf="convertedValue !== null" class="result-section">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Converted Result</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <section class="result-formula">
+                    <p>
+                        <strong>Converted Value (Base {{ toBase === 'custom' ? customToBase : toBase }}):</strong>
+                        <span class="final-value">&nbsp;{{ convertedValue }}</span>
+                    </p>
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- Example Section -->
+    <section class="steps-panel">
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    Example Conversion
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="solution-content">
+                <h2>Step-by-Step Conversion</h2>
+                <mat-vertical-stepper>
+                    <!-- Step 1 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 1: Convert Binary to Decimal</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Example:</strong> Convert <code>1011</code> (Binary) to Decimal.</p>
+                            <p><strong>Formula:</strong> (1 × 2³) + (0 × 2²) + (1 × 2¹) + (1 × 2⁰)</p>
+                            <p><strong>Calculation:</strong> 8 + 0 + 2 + 1 = <strong>11</strong></p>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 2 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 2: Convert Decimal to Hexadecimal</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Example:</strong> Convert <code>11</code> (Decimal) to Hexadecimal.</p>
+                            <p><strong>Formula:</strong> Divide by 16 and use remainders.</p>
+                            <p><strong>Calculation:</strong> 11 in Hexadecimal is <strong>B</strong>.</p>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <!-- How It Works Section -->
+    <section class="information-section fade-in mt-3">
+        <h2>📘 How Number System Conversion Works</h2>
+        <div class="formula-box">
+            <p>
+                Number system conversion involves converting a number from one base (radix) to another. The most common
+                bases are:
+            </p>
+            <ul>
+                <li><strong>Binary (Base 2):</strong> Uses digits 0 and 1.</li>
+                <li><strong>Octal (Base 8):</strong> Uses digits 0 to 7.</li>
+                <li><strong>Decimal (Base 10):</strong> Uses digits 0 to 9.</li>
+                <li><strong>Hexadecimal (Base 16):</strong> Uses digits 0 to 9 and letters A to F.</li>
+            </ul>
+            <p>
+                The conversion process involves:
+            </p>
+            <ol>
+                <li>Converting the input number from its original base to decimal (if necessary).</li>
+                <li>Converting the decimal number to the target base.</li>
+            </ol>
+            <p class="formula">Formula: Convert from Base <em>X</em> to Base <em>Y</em> using intermediate decimal
+                conversion.</p>
+        </div>
+    </section>
+
+
+</div>

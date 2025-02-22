@@ -49,7 +49,7 @@ body.dark-mode {
   --icon-color: #4db6ac;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --stepper-bg: #263238;
-  --calculation-box: #424242;
+  --calculation-box: #f3e5f5;
   --formula-box: #1b5e20;
 }
 
@@ -153,6 +153,7 @@ mat-form-field {
   padding: 1rem;
   background-color: var(--calculation-box);
   border-radius: 4px;
+  color: #121212;
 }
 
 /* Steps and Solutions */
@@ -178,6 +179,7 @@ mat-form-field {
 
 .calculation-box {
   background-color: var(--calculation-box);
+  color: #000;
 }
 
 .formula-box {

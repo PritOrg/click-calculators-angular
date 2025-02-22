@@ -1,0 +1,151 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>EMI Loan Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>
+                Calculate your monthly EMI based on loan amount, interest rate, and tenure.
+            </span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section row">
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Loan Amount (₹)</mat-label>
+            <input matInput type="number" [(ngModel)]="loanAmount" (input)="calculateEMI()"
+                placeholder="Enter Loan Amount" />
+                <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Annual Interest Rate (%)</mat-label>
+            <input matInput type="number" [(ngModel)]="annualInterestRate" (input)="calculateEMI()"
+                placeholder="Enter Interest Rate" />
+                <mat-icon matSuffix class="suffix-icon">percentage</mat-icon>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Loan Tenure (Years)</mat-label>
+            <input matInput type="number" [(ngModel)]="loanTenure" (input)="calculateEMI()"
+                placeholder="Enter Loan Tenure" />
+                <mat-icon matSuffix class="suffix-icon">calendar_today</mat-icon>
+
+        </mat-form-field>
+    </div>
+
+    <!-- Calculate Button -->
+    <button mat-raised-button color="primary" (click)="calculateEMI()">Calculate EMI</button>
+
+    <!-- Result Section -->
+    <div *ngIf="emi > 0" class="result-section">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>EMI Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="result-formula">
+                    <p><strong>Monthly EMI:</strong> ₹<span class="final-value">{{ emi | number:'1.2-2' }}</span></p>
+                    <p><strong>Total Payment:</strong> ₹<span class="final-value">{{ totalPayment | number:'1.2-2'
+                            }}</span></p>
+                    <p><strong>Total Interest Payable:</strong> ₹<span class="final-value">{{ totalInterest |
+                            number:'1.2-2' }}</span></p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+
+    <section class=" steps-panel">
+        <!-- Step-by-Step Calculation -->
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    View Step-by-Step Calculation
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="solution-content">
+                <h2>Steps to Calculate EMI</h2>
+                <mat-vertical-stepper>
+                    <!-- Step 1 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 1: Convert the annual interest rate to a monthly
+                            rate</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Formula:</strong> R = {{ annualInterestRate }} / 12 / 100</p>
+                            <p><strong>Monthly Interest Rate:</strong> {{ monthlyInterestRate.toFixed(6) }}</p>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 2 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 2: Convert loan tenure from years to months</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Formula:</strong> N = {{ loanTenure }} × 12</p>
+                            <p><strong>Total Months:</strong> {{ totalMonths }}</p>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 3 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 3: Apply EMI formula</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Formula:</strong></p>
+                            <p>EMI = ({{ loanAmount }} × {{ monthlyInterestRate.toFixed(6) }} × (1 + {{
+                                monthlyInterestRate.toFixed(6) }})^{{ totalMonths }}) / ((1 + {{
+                                monthlyInterestRate.toFixed(6) }})^{{ totalMonths }} - 1)</p>
+                        </div>
+                    </mat-step>
+
+                    <!-- Final Step -->
+                    <mat-step>
+                        <ng-template matStepLabel>Final EMI Calculation</ng-template>
+                        <div class="formula-box">
+                            <p><strong>Final EMI:</strong> ₹{{ emi.toFixed(2) }}</p>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <section class=" steps-panel">
+
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    Example EMI Calculation </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="calculation-box">
+                <p>
+                    Suppose you take a loan of ₹5,00,000 at an interest rate of 7.5% per year for 5 years.
+                    <br />The EMI will be calculated as follows:
+                </p>
+                <p class="example">EMI = ₹10,139 per month</p>
+                <p>Total Payment: ₹6,08,340</p>
+                <p>Total Interest Payable: ₹1,08,340</p>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <!-- Information Section -->
+    <section class="information-section fade-in mt-3">
+        <h2>📘 How EMI Calculation Works?</h2>
+        <div class="formula-box">
+            <p>
+                EMI (Equated Monthly Installment) is calculated using the following formula:
+            </p>
+            <p class="formula">EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</p>
+            <p>Where:</p>
+            <ul>
+                <li><strong>P</strong> = Loan Amount</li>
+                <li><strong>R</strong> = Monthly Interest Rate (Annual Rate / 12 / 100)</li>
+                <li><strong>N</strong> = Loan Tenure in Months</li>
+            </ul>
+        </div>
+    </section>
+
+</div>

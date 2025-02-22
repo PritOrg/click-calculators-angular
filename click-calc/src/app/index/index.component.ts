@@ -245,6 +245,7 @@ export class IndexComponent {
   private allCalculators: CalculatorItem[];
 
   searchResults: CalculatorItem[] = [];
+  
   // Fuse.js instance for fuzzy searching
   private fuse: Fuse<CalculatorItem>;
   constructor() {
@@ -252,7 +253,7 @@ export class IndexComponent {
 
     const fuseOptions: IFuseOptions<CalculatorItem> = {
       keys: ['title', 'description', 'tags', 'features'], 
-      threshold: 0.3,  // Allows slight typos and near matches
+      threshold: 0.3,  
       includeScore: true
     };
 

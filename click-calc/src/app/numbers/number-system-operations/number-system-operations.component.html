@@ -1,0 +1,140 @@
+<div class="converter-container fade-in">
+    <!-- Header Section -->
+    <div class="calculator-header">
+        <h1>Number System Arithmetic Operations</h1>
+        <div class="description">
+            <mat-icon>calculate</mat-icon>
+            <span>Perform Addition, Subtraction, Multiplication, and Division in any base.</span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section">
+        <!-- Number 1 Input -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Enter First Number</mat-label>
+            <mat-icon matSuffix class="suffix-icon">pin</mat-icon>
+            <input matInput [(ngModel)]="number1" placeholder="Enter first number (e.g., 1011, FF, 17)" (input)="performOperation()" />
+        </mat-form-field>
+
+        <!-- Number 2 Input -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Enter Second Number</mat-label>
+            <mat-icon matSuffix class="suffix-icon">pin</mat-icon>
+            <input matInput [(ngModel)]="number2" placeholder="Enter second number" (input)="performOperation()"/>
+        </mat-form-field>
+
+        <!-- Base Selection -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Choose Base</mat-label>
+            <mat-icon matSuffix class="suffix-icon">numbers</mat-icon>
+            <mat-select [(ngModel)]="base" (selectionChange)="performOperation()">
+                <mat-option *ngFor="let base of availableBases" [value]="base.value">{{ base.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Custom Base Input -->
+        <mat-form-field *ngIf="base === 'custom'" appearance="outline" class="input-field">
+            <mat-label>Enter Custom Base</mat-label>
+            <input matInput type="number" [(ngModel)]="customBase" min="2" max="36"
+                placeholder="Enter custom base (2-36)" (input)="performOperation()"/>
+        </mat-form-field>
+
+        <!-- Operation Selection -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Select Operation</mat-label>
+            <mat-icon matSuffix class="suffix-icon">functions</mat-icon>
+            <mat-select [(ngModel)]="operation" (selectionChange)="performOperation()">
+                <mat-option *ngFor="let op of availableOperations" [value]="op.value">{{ op.label }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- Perform Operation Button -->
+    <button mat-raised-button color="primary" class="convert-button" [disabled]="!number1 || !number2"
+        (click)="performOperation()">
+        Perform Operation
+    </button>
+
+    <!-- Result Section -->
+    <div *ngIf="result !== null" class="result-section">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Calculation Result</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <section class="result-formula">
+                    <p>
+                        <strong>Result (Base {{ base === 'custom' ? customBase : base }}):</strong>
+                        <span class="final-value">&nbsp;{{ result }}</span>
+                    </p>
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <!-- Example Section -->
+    <section class="steps-panel">
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    Example Arithmetic Operation
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="solution-content">
+                <h2>Step-by-Step Calculation</h2>
+                <mat-vertical-stepper>
+                    <!-- Step 1 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 1: Convert Numbers to Decimal</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Example:</strong> Add <code>1011</code> (Binary) and <code>1101</code> (Binary).
+                            </p>
+                            <p><strong>Conversion:</strong></p>
+                            <ul>
+                                <li><code>1011</code> (Binary) = <strong>11</strong> (Decimal)</li>
+                                <li><code>1101</code> (Binary) = <strong>13</strong> (Decimal)</li>
+                            </ul>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 2 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 2: Perform Operation in Decimal</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Operation:</strong> 11 + 13 = <strong>24</strong></p>
+                        </div>
+                    </mat-step>
+
+                    <!-- Step 3 -->
+                    <mat-step>
+                        <ng-template matStepLabel>Step 3: Convert Result to Target Base</ng-template>
+                        <div class="calculation-box">
+                            <p><strong>Conversion:</strong> 24 (Decimal) = <code>11000</code> (Binary)</p>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <!-- How It Works Section -->
+    <section class="information-section fade-in mt-3">
+        <h2>📘 How Arithmetic Operations Work</h2>
+        <div class="formula-box">
+            <p>
+                Arithmetic operations (Addition, Subtraction, Multiplication, Division) can be performed in any number
+                system (base). The process involves:
+            </p>
+            <ol>
+                <li>Converting the input numbers from their original base to decimal (if necessary).</li>
+                <li>Performing the arithmetic operation in decimal.</li>
+                <li>Converting the result back to the target base.</li>
+            </ol>
+            <p class="formula">Formula: Perform operation in Base <em>X</em> using intermediate decimal conversion.</p>
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,80 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>LCM & GCD Calculator</h1>
+        <div class="description">
+            <mat-icon>calculate</mat-icon>
+            <span>Find the Least Common Multiple (LCM) and Greatest Common Divisor (GCD) of numbers.</span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section">
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Enter Numbers (comma-separated)</mat-label>
+            <mat-icon matPrefix>123</mat-icon>
+            <input matInput [(ngModel)]="numbersInput" (input)="calculateLCMGCD()" placeholder="e.g., 12, 18, 24" />
+        </mat-form-field>
+    </div>
+
+    <!-- Result Section -->
+    <div *ngIf="lcm !== null || gcd !== null" class="result-section">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Results</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <section class="result-formula">
+                    <p><strong>LCM (Least Common Multiple):</strong> <span class="final-value">&nbsp;{{ lcm }}</span>
+                    </p>
+                    <p><strong>GCD (Greatest Common Divisor):</strong> <span class="final-value">&nbsp;{{ gcd }}</span>
+                    </p>
+                </section>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <!-- Steps Section -->
+    <section class="steps-panel" *ngIf="gcdSteps.length > 0 || lcmSteps.length > 0">
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    Step-by-Step Calculation
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <section  class="steps-panel">
+                <mat-vertical-stepper class="scientific-stepper" linear="false">
+                    <!-- GCD Steps -->
+                    <mat-step *ngFor="let step of gcdSteps; let i = index">
+                        <ng-template matStepLabel>Step {{ i + 1 }}: GCD Calculation</ng-template>
+                        <div class="calculation-box">
+                            <p>{{ step }}</p>
+                        </div>
+                    </mat-step>
+
+                    <!-- LCM Steps -->
+                    <mat-step *ngFor="let step of lcmSteps; let i = index">
+                        <ng-template matStepLabel>Step {{ i + 1 + gcdSteps.length }}: LCM Calculation</ng-template>
+                        <div class="calculation-box">
+                            <p>{{ step }}</p>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper>
+            </section>
+        </mat-expansion-panel>
+    </section>
+     <!-- How It Works Section -->
+     <section class="information-section fade-in mt-3">
+        <h2>📌 How It Works</h2>
+        <div class="formula-box">
+            <p>
+                Enter multiple numbers separated by commas (e.g., 12, 18, 24). This calculator will:
+            </p>
+            <ul>
+                <li><strong>LCM:</strong> Finds the smallest number that is a multiple of all entered numbers.</li>
+                <li><strong>GCD:</strong> Finds the largest number that divides all entered numbers.</li>
+            </ul>
+        </div>
+    </section>
+</div>

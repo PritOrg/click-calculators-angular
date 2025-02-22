@@ -1,0 +1,66 @@
+<div class="converter-container">
+  <!-- Header Section -->
+  <header class="calculator-header">
+    <h1>SIP Calculator</h1>
+    <p class="description">
+      Calculate your estimated returns from Systematic Investment Plans.
+    </p>
+  </header>
+
+  <!-- Calculator Section -->
+  <section class="input-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Investment Amount (₹):</mat-label>
+      <input matInput [(ngModel)]="amount" placeholder="e.g., 5000" (input)="calculateSIP()">
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Expected Rate of Return (%):</mat-label>
+      <input matInput [(ngModel)]="rate" placeholder="e.g., 12" (input)="calculateSIP()">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Investment Duration (years):</mat-label>
+      <input matInput [(ngModel)]="years" placeholder="e.g., 5" (input)="calculateSIP()">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="calculateSIP()">
+      Calculate
+    </button>
+  </section>
+  <!-- Breakdown Section -->
+  <section class="result-section fade-in">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>Investment Breakdown</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="result-formula">
+          <p>Total Amount Invested: ₹<span class="final-value">{{ totalInvested | number:'1.2-2' }}</span></p>
+          <p>Wealth Gained: ₹<span class="final-value">{{ wealthGained | number:'1.2-2' }}</span></p>
+          <p>Total Value: ₹<span class="final-value">{{ result | number:'1.2-2' }}</span></p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+
+  <!-- Information Section -->
+  <section class="information-section fade-in mt-3">
+    <h2>How It Works</h2>
+    <div class="formula-box">
+      <p>
+        Enter your monthly SIP amount, the expected annual rate of return, and the investment duration to calculate the
+        estimated returns.
+      </p>
+    </div>
+
+    <h2>Example of Using SIP Calculator</h2>
+    <div class="calculation-box">
+      <p><strong>Example:</strong> Suppose you decide to invest ₹5,000 per month as SIP, with an expected return rate of
+        12% per year, for 5 years. The final amount you will get is ₹4,12,431.80 from a total invested amount of
+        ₹3,00,000.</p>
+    </div>
+  </section>
+</div>

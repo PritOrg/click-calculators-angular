@@ -1,0 +1,89 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>Simple & Compound Interest Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>Calculate interest with precision. Enter details below.</span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section row">
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Principal Amount (₹)</mat-label>
+            <input matInput type="number" [(ngModel)]="principal" placeholder="Enter principal"
+                (input)="calculateInterest()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Rate of Interest (%)</mat-label>
+            <input matInput type="number" [(ngModel)]="rate" placeholder="Enter interest rate"
+                (input)="calculateInterest()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Time (Years)</mat-label>
+            <input matInput type="number" [(ngModel)]="time" placeholder="Enter time in years"
+                (input)="calculateInterest()" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Select Compounding Frequency</mat-label>
+            <mat-select [(ngModel)]="frequency" (selectionChange)="calculateInterest()" aria-label="Select Compounding Frequency" >
+                <mat-option value="1">Yearly</mat-option>
+                <mat-option value="2">Half-Yearly</mat-option>
+                <mat-option value="4">Quarterly</mat-option>
+                <mat-option value="12">Monthly</mat-option>
+                <mat-option value="365">Daily</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="calculateInterest()">Calculate</button>
+    </div>
+
+    <!-- Result Section -->
+    <div *ngIf="resultsAvailable" class="result-section">
+        <section>
+
+            <mat-card class="result-card">
+                <mat-card-header>
+                    <mat-icon>check_circle</mat-icon>
+                    <mat-card-title>Results</mat-card-title>
+                </mat-card-header>
+                <mat-card-content >
+                    <div class="result-formula">
+                        <p><strong>Simple Interest:</strong> ₹{{ simpleInterest.toFixed(2) }}</p>
+                        <p><strong>Total Amount (SI):</strong> ₹{{ totalSimpleAmount.toFixed(2) }}</p>
+                        <p><strong>Compound Interest:</strong> ₹{{ compoundInterest.toFixed(2) }}</p>
+                        <p><strong>Total Amount (CI):</strong> ₹{{ totalCompoundAmount.toFixed(2) }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </section>
+    </div>
+    <section>
+
+        <!-- Step-by-Step Breakdown -->
+        <mat-expansion-panel class="steps-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    View Step-by-Step Calculation
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="calculation-box">
+                <p><strong>Simple Interest Formula:</strong></p>
+                <p>SI = (P × R × T) / 100</p>
+                <p>SI = ({{ principal }} × {{ rate }} × {{ time }}) / 100 = ₹{{ simpleInterest.toFixed(2) }}</p>
+                <hr />
+                <p><strong>Compound Interest Formula:</strong></p>
+                <p>A = P (1 + R/N)^(N×T)</p>
+                <p>
+                    A = {{ principal }} × (1 + {{ rate }} / {{ frequency * 100 }}) ^ ({{ frequency }} × {{ time }}) =
+                    ₹{{ totalCompoundAmount.toFixed(2) }}
+                </p>
+                <p>CI = A - P = ₹{{ compoundInterest.toFixed(2) }}</p>
+            </div>
+        </mat-expansion-panel>
+    </section>
+</div>

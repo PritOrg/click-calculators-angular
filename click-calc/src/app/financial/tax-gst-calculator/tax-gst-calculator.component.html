@@ -1,0 +1,137 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+        <h1>Tax & GST Calculator</h1>
+        <div class="description">
+            <mat-icon>info</mat-icon>
+            <span>
+                Calculate applicable tax and GST for different slabs & countries.
+            </span>
+        </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="input-section row">
+        <!-- Amount -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Amount (₹/$)</mat-label>
+            <mat-icon matSuffix class="suffix-icon">attach_money</mat-icon>
+            <input matInput type="number" [(ngModel)]="amount" (input)="calculateTaxGST()" placeholder="Enter Amount" />
+        </mat-form-field>
+
+
+        <!-- Tax Slab -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>Tax Slab (%)</mat-label>
+            <mat-icon matSuffix class="suffix-icon">percent</mat-icon>
+            <input matInput type="number" [(ngModel)]="taxRate" (input)="calculateTaxGST()"
+                placeholder="Enter Tax Slab" />
+        </mat-form-field>
+
+        <!-- GST Rate -->
+        <mat-form-field appearance="outline" class="input-field">
+            <mat-label>GST Rate (%)</mat-label>
+            <mat-icon matSuffix class="suffix-icon">receipt_long</mat-icon>
+            <input matInput type="number" [(ngModel)]="gstRate" (input)="calculateTaxGST()"
+                placeholder="Enter GST Rate" />
+        </mat-form-field>
+    </div>
+
+    <!-- Calculate Button -->
+    <button mat-raised-button color="primary" (click)="calculateTaxGST()">Calculate Tax & GST</button>
+
+    <!-- Result Section -->
+    <div *ngIf="totalTax > 0 || totalGST > 0" class="result-section">
+        <mat-card class="result-card">
+            <mat-card-header>
+                <mat-icon>check_circle</mat-icon>
+                <mat-card-title>Tax & GST Breakdown</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="result-formula">
+                    <p><strong>Total Tax:</strong> ₹<span class="final-value">{{ totalTax | number:'1.2-2' }}</span></p>
+                    <p><strong>Total GST:</strong> ₹<span class="final-value">{{ totalGST | number:'1.2-2' }}</span></p>
+                    <p><strong>Final Amount (After Tax & GST):</strong> ₹<span class="final-value">{{ finalAmount |
+                            number:'1.2-2' }}</span></p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <section class="steps-panel">
+
+        <mat-expansion-panel class="steps-panel fade-in mb-4">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>lightbulb</mat-icon>
+              View Step-by-Step Calculation
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+      
+          <div class="solution-content">
+            <h2>Steps to Calculate Total Tax, GST, and Final Amount</h2>
+            <mat-vertical-stepper>
+              <!-- Step 1 -->
+              <mat-step>
+                <ng-template matStepLabel>Step 1: Calculate Tax</ng-template>
+                <div class="calculation-box">
+                  <p><strong>Formula:</strong> Tax = ({{ amount }} × {{ taxRate }}%) / 100</p>
+                  <p><strong>Total Tax:</strong> ₹{{ totalTax.toFixed(2) }}</p>
+                </div>
+              </mat-step>
+      
+              <!-- Step 2 -->
+              <mat-step>
+                <ng-template matStepLabel>Step 2: Calculate GST</ng-template>
+                <div class="calculation-box">
+                  <p><strong>Formula:</strong> GST = ({{ amount }} × {{ gstRate }}%) / 100</p>
+                  <p><strong>Total GST:</strong> ₹{{ totalGST.toFixed(2) }}</p>
+                </div>
+              </mat-step>
+      
+              <!-- Step 3 -->
+              <mat-step>
+                <ng-template matStepLabel>Step 3: Calculate Final Amount</ng-template>
+                <div class="calculation-box">
+                  <p><strong>Formula:</strong> Final Amount = {{ amount }} + {{ totalTax.toFixed(2) }} + {{ totalGST.toFixed(2) }}</p>
+                  <p><strong>Final Amount:</strong> ₹{{ finalAmount.toFixed(2) }}</p>
+                </div>
+              </mat-step>
+            </mat-vertical-stepper>
+          </div>
+        </mat-expansion-panel>
+      
+      </section>
+      
+    <section class="steps-panel">
+        <mat-expansion-panel class="steps-panel">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>lightbulb</mat-icon>
+                    Example Tax & GST Calculation </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <div class="calculation-box">
+                <p><strong>Example:</strong></p>
+                <p>
+                    Suppose you purchase an item for ₹10,000 with a tax rate of 10% and a GST rate of 18%.
+                </p>
+                <p class="example">Total Tax = ₹1,000</p>
+                <p>Total GST = ₹1,800</p>
+                <p><strong>Final Payable Amount: ₹12,800</strong></p>
+            </div>
+        </mat-expansion-panel>
+    </section>
+    <!-- Information Section -->
+    <section class="information-section fade-in mt-3">
+        <h2>📘 How Tax & GST Calculation Works?</h2>
+        <div class="formula-box">
+            <p>
+                Tax and GST are calculated as follows:
+            </p>
+            <p class="formula">Tax = (Amount × Tax Rate) / 100</p>
+            <p class="formula">GST = (Amount × GST Rate) / 100</p>
+            <p class="formula">Final Amount = Amount + Tax + GST</p>
+        </div>
+    </section>
+    
+</div>

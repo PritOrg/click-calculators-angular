@@ -1,0 +1,80 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Weight Converter</h1>
+      <div class="description">
+        <mat-icon>swap_horiz</mat-icon>
+        <span>Convert between different weight units instantly.</span>
+      </div>
+    </div>
+  
+    <!-- Weight Converter Input Section -->
+    <section class="conversion-section">
+      <h2>⚖️ Weight Converter</h2>
+      <div class="input-section row">
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>Enter Weight</mat-label>
+          <mat-icon matSuffix class="suffix-icon">fitness_center</mat-icon>
+          <input matInput type="number" [(ngModel)]="weightValue" (input)="convertWeight()" placeholder="Enter value" />
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>From</mat-label>
+          <mat-icon matSuffix class="suffix-icon">compare_arrows</mat-icon>
+          <mat-select [(ngModel)]="weightFrom" (selectionChange)="convertWeight()">
+            <mat-option *ngFor="let unit of weightUnits" [value]="unit">{{ unit }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="input-field">
+          <mat-label>To</mat-label>
+          <mat-icon matSuffix class="suffix-icon">sync_alt</mat-icon>
+          <mat-select [(ngModel)]="weightTo" (selectionChange)="convertWeight()">
+            <mat-option *ngFor="let unit of weightUnits" [value]="unit">{{ unit }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <!-- Result Display -->
+      <div *ngIf="convertedWeight !== null" class="result-section">
+        <mat-card class="result-card">
+          <mat-card-header>
+            <mat-icon>check_circle</mat-icon>
+            <mat-card-title>Converted Weight</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ weightValue }} {{ weightFrom }} = <strong>{{ convertedWeight | number:'1.2-2' }} {{ weightTo }}</strong></p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </section>
+  
+    <!-- Information Section -->
+    <section class="information-section fade-in mt-3">
+      <h2>📘 How Weight Conversion Works</h2>
+      <div class="formula-box">
+        <p>
+          Weight conversions are performed using standard unit conversion formulas. The calculator uses predefined conversion factors to convert between units.
+        </p>
+        <p class="formula">1 kilogram (kg) = 2.20462 pounds (lbs)</p>
+        <p class="formula">1 gram (g) = 0.001 kilogram (kg)</p>
+      </div>
+    </section>
+  
+    <!-- Example Section -->
+    <section class="steps-panel">
+      <mat-expansion-panel class="steps-panel fade-in mb-4">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>lightbulb</mat-icon>
+            Example Weight Conversion
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+  
+        <div class="calculation-box">
+          <p><strong>Example:</strong> Convert 5 kilograms (kg) to pounds (lbs).</p>
+          <p><strong>Formula:</strong> 1 kg = 2.20462 lbs</p>
+          <p><strong>Calculation:</strong> 5 kg × 2.20462 = 11.0231 lbs</p>
+        </div>
+      </mat-expansion-panel>
+    </section>
+  </div>

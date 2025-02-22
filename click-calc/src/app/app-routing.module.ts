@@ -20,6 +20,15 @@ import { DegreesToRadiansComponent } from './trigo/degrees-to-radians/degrees-to
 import { PolygonComponent } from './geometry/polygon/polygon.component';
 import { IdealWeightCalculatorComponent } from './health/ideal-weight-calculator/ideal-weight-calculator.component';
 import { MatricesCalcComponent } from './matrices-calc/matrices-calc.component';
+import { SipCalcComponent } from './financial/sip-calc/sip-calc.component';
+import { InterestCalculatorComponent } from './financial/interest-calculator/interest-calculator.component';
+import { EmiCalculatorComponent } from './financial/emi-calculator/emi-calculator.component';
+import { TaxGstCalculatorComponent } from './financial/tax-gst-calculator/tax-gst-calculator.component';
+import { WeightConverterComponent } from './geometry/weight-converter/weight-converter.component';
+import { LengthConverterComponent } from './geometry/length-converter/length-converter.component';
+import { LcmGcdCalculatorComponent } from './numbers/lcm-gcd-calculator/lcm-gcd-calculator.component';
+import { NumberSystemConverterComponent } from './numbers/number-system-converter/number-system-converter.component';
+import { NumberSystemOperationsComponent } from './numbers/number-system-operations/number-system-operations.component';
 
 const routes: Routes = [
   {
@@ -55,20 +64,20 @@ const routes: Routes = [
     component: PolygonComponent,
   },
   {
+    path: 'geometry/weight-converter',
+    component: WeightConverterComponent,
+  },
+  {
+    path: 'geometry/length-converter',
+    component: LengthConverterComponent,
+  },
+  {
     path: 'percentage/add',
     component: AddComponent,
   },
   {
     path: 'percentage/discount-calc',
     component: DiscountCalculatorComponent,
-  },
-  {
-    path: 'table-generator',
-    component: TableGeneratorComponent,
-  },
-  {
-    path: 'salary-calculator',
-    component: SalaryCalculatorComponent,
   },
   {
     path: 'number/ratio-calculator',
@@ -91,6 +100,18 @@ const routes: Routes = [
     component: PrimeFactorizationComponent,
   },
   {
+    path: 'number/lcm-gcd-calculator',  
+    component: LcmGcdCalculatorComponent,
+  },
+  {
+    path: 'number/number-system-convertor',  
+    component: NumberSystemConverterComponent,
+  },
+  {
+    path: 'number/number-system-operations',  
+    component: NumberSystemOperationsComponent,
+  },
+  {
     path: 'matrices-calculator',  
     component: MatricesCalcComponent,
   },
@@ -101,6 +122,30 @@ const routes: Routes = [
   {
     path: 'health/over-weight-calculator',  
     component: OverWeightCalculatorComponent,
+  },
+  {
+    path: 'financial/sip-calculator',  
+    component: SipCalcComponent,
+  },
+  {
+    path: 'financial/interest-calculator',  
+    component: InterestCalculatorComponent,
+  },
+  {
+    path: 'financial/emi-calculator',  
+    component: EmiCalculatorComponent,
+  },
+  {
+    path: 'financial/tax-gst-calculator',  
+    component: TaxGstCalculatorComponent,
+  },
+  {
+    path: 'table-generator',
+    component: TableGeneratorComponent,
+  },
+  {
+    path: 'salary-calculator',
+    component: SalaryCalculatorComponent,
   },
 ];
 
