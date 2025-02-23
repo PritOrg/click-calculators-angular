@@ -1,45 +1,58 @@
 <mat-toolbar color="primary" class="header-toolbar">
   
   <div class="logo-section">
-    <button *ngIf="isMobile" mat-icon-button (click)="toggleSidenav()" class="menu-icon">
+    <button *ngIf="isMobile" mat-icon-button (click)="toggleSidenav()" class="menu-icon"  routerLink="/">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="logo">Click Calc</span>
+    <span class="logo"  routerLink="/">Click Calc</span>
   </div>
 
   <span class="spacer"></span>
 
   <ng-container *ngIf="!isMobile; else mobileMenu">
+    <!-- Percentage Menu -->
     <button mat-button [matMenuTriggerFor]="percentageMenu">
       <mat-icon>percent</mat-icon>
       <span>Percentage</span>
     </button>
 
+    <!-- Geometry & Trigonometry Menu -->
     <button mat-button [matMenuTriggerFor]="geometryTrigoMenu">
       <mat-icon>architecture</mat-icon>
       <span>Geometry & Trigonometry</span>
     </button>
 
+    <!-- Numbers Menu -->
     <button mat-button [matMenuTriggerFor]="numbersMenu">
       <mat-icon>filter_1</mat-icon>
       <span>Numbers</span>
     </button>
 
+    <!-- Matrices Menu -->
     <button mat-button [matMenuTriggerFor]="matricesMenu">
       <mat-icon>grid_on</mat-icon>
       <span>Matrices</span>
     </button>
 
+    <!-- Utility Menu -->
     <button mat-button [matMenuTriggerFor]="utilityMenu">
       <mat-icon>build</mat-icon>
       <span>Utility</span>
     </button>
 
+    <!-- Health Menu -->
     <button mat-button [matMenuTriggerFor]="healthMenu">
       <mat-icon>favorite</mat-icon>
       <span>Health</span>
     </button>
 
+    <!-- Financial Menu -->
+    <button mat-button [matMenuTriggerFor]="financialMenu">
+      <mat-icon>attach_money</mat-icon>
+      <span>Financial</span>
+    </button>
+
+    <!-- Theme Toggle -->
     <mat-slide-toggle (change)="toggleTheme()" [checked]="isDarkMode" color="accent">
       <mat-icon>{{ isDarkMode ? 'dark_mode' : 'light_mode' }}</mat-icon>
       <span>{{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}</span>
@@ -63,6 +76,8 @@
     <button mat-menu-item routerLink="/trigo/complementary-angle">Complementary Angles</button>
     <button mat-menu-item routerLink="/trigo/right-triangle">Right Triangle Calculator</button>
     <button mat-menu-item routerLink="/geometry/polygon-calculator">Polygon Calculator</button>
+    <button mat-menu-item routerLink="/geometry/weight-converter">Weight Converter</button>
+    <button mat-menu-item routerLink="/geometry/length-converter">Length Converter</button>
   </mat-menu>
 
   <!-- Numbers Menu -->
@@ -72,7 +87,11 @@
     <button mat-menu-item routerLink="/number/long-number-division-calculator">Long Division Calculator</button>
     <button mat-menu-item routerLink="/number/prime-factorization">Prime Factorization</button>
     <button mat-menu-item routerLink="/number/ratio-calculator">Decimal to Ratio Converter</button>
-
+    <button mat-menu-item routerLink="/number/lcm-gcd-calculator">LCM and GCD Calculator</button>
+    <button mat-menu-item routerLink="/number/number-system-convertor">Number System Converter</button>
+    <button mat-menu-item routerLink="/number/number-system-operations">Number System Operations</button>
+    <button mat-menu-item routerLink="/number/permutation-combination-calc">Permutation & Combination</button>
+    <button mat-menu-item routerLink="/number/factorial-calculator">Factorial Calculator</button>
   </mat-menu>
 
   <!-- Matrices Menu -->
@@ -90,6 +109,14 @@
   <mat-menu #healthMenu="matMenu">
     <button mat-menu-item routerLink="/health/ideal-weight-calculator">Ideal Weight Calculator</button>
     <button mat-menu-item routerLink="/health/over-weight-calculator">Overweight Calculator</button>
+  </mat-menu>
+
+  <!-- Financial Menu -->
+  <mat-menu #financialMenu="matMenu">
+    <button mat-menu-item routerLink="/financial/sip-calculator">SIP Calculator</button>
+    <button mat-menu-item routerLink="/financial/interest-calculator">Interest Calculator</button>
+    <button mat-menu-item routerLink="/financial/emi-calculator">EMI Calculator</button>
+    <button mat-menu-item routerLink="/financial/tax-gst-calculator">Tax & GST Calculator</button>
   </mat-menu>
 
 </mat-toolbar>
