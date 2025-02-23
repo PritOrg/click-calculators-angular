@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { evaluate } from 'mathjs';
 @Component({
   selector: 'app-complementary-angle',
   templateUrl: './complementary-angle.component.html',
@@ -31,7 +31,7 @@ export class ComplementaryAngleComponent {
     if (this.unit === 'radians' && this.angleInput.includes('pi')) {
       // Safely handle 'pi' input, using Math.PI directly
       angle = this.angleInput.replace(/pi/g, 'Math.PI').includes('/') ?
-        eval(this.angleInput.replace('pi', 'Math.PI')) :
+        evaluate(this.angleInput.replace('pi', 'Math.PI')) :
         parseFloat(this.angleInput.replace('pi', 'Math.PI'));
     } else {
       angle = parseFloat(this.angleInput);

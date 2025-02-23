@@ -1,0 +1,85 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Factorial Calculator</h1>
+      <div class="description">
+        <mat-icon>info</mat-icon>
+        <span>Calculate the factorial of a number (n!) with a step-by-step breakdown.</span>
+      </div>
+    </div>
+  
+    <div class="input-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Number (n)</mat-label>
+        <input 
+          matInput 
+          type="number" 
+          [(ngModel)]="n" 
+          min="0" 
+          (input)="calculateFactorial()"
+          placeholder="Enter a non-negative integer"
+        />
+        <mat-icon matSuffix class="suffix-icon">calculate</mat-icon>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="calculateFactorial()">
+        <mat-icon>calculate</mat-icon>
+        Calculate
+      </button>
+    </div>
+  
+    <div class="result-section" *ngIf="factorial !== null">
+      <mat-card class="result-card">
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Result</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="result-formula">
+            <span>{{ n }}! = </span>
+            <span class="final-value">{{ formattedFactorial }}</span>
+          </div>
+          <button mat-icon-button (click)="copyToClipboard()">
+            <mat-icon>content_copy</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <mat-expansion-panel class="steps-panel" *ngIf="n !== null && n > 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>lightbulb</mat-icon>
+          View Step-by-Step Solution
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <div class="solution-content">
+        <h2>Factorial Calculation Steps</h2>
+  
+        <mat-vertical-stepper>
+          <mat-step>
+            <ng-template matStepLabel>Step 1: Define Factorial</ng-template>
+            <div class="calculation-box">
+              <p>The factorial of a number (n!) is calculated as:</p>
+              <p><strong>n! = n × (n-1) × (n-2) × ... × 1</strong></p>
+            </div>
+          </mat-step>
+  
+          <mat-step *ngFor="let step of steps; let i = index">
+            <ng-template matStepLabel>Step {{ i + 2 }}: Multiply</ng-template>
+            <div class="calculation-box">
+              <p>{{ step }}</p>
+            </div>
+          </mat-step>
+  
+          <mat-step>
+            <ng-template matStepLabel>Final Step: Get the Result</ng-template>
+            <div class="formula-box">
+              <p><strong>{{ n }}! = {{ formattedFactorial }}</strong></p>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </mat-expansion-panel>
+  </div>
+  

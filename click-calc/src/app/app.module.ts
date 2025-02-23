@@ -58,6 +58,8 @@ import { LengthConverterComponent } from './geometry/length-converter/length-con
 import { LcmGcdCalculatorComponent } from './numbers/lcm-gcd-calculator/lcm-gcd-calculator.component';
 import { NumberSystemConverterComponent } from './numbers/number-system-converter/number-system-converter.component';
 import { NumberSystemOperationsComponent } from './numbers/number-system-operations/number-system-operations.component';
+import { PermutationCombinationCalcComponent } from './numbers/permutation-combination-calc/permutation-combination-calc.component';
+import { FactorialCalculatorComponent } from './numbers/factorial-calculator/factorial-calculator.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +94,8 @@ import { NumberSystemOperationsComponent } from './numbers/number-system-operati
     LcmGcdCalculatorComponent,
     NumberSystemConverterComponent,
     NumberSystemOperationsComponent,
+    PermutationCombinationCalcComponent,
+    FactorialCalculatorComponent,
   ],
   imports: [
     CommonModule,

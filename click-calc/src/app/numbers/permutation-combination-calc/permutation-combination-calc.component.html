@@ -1,0 +1,91 @@
+<div class="converter-container fade-in">
+    <div class="calculator-header">
+      <h1>Permutation & Combination Calculator</h1>
+      <div class="description">
+        <mat-icon>info</mat-icon>
+        <span>Calculate permutations (nPr) and combinations (nCr) for given values of n and r.</span>
+      </div>
+    </div>
+  
+    <div class="input-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter n</mat-label>
+        <input matInput type="number" [(ngModel)]="n" id="n" (input)="calculate()" placeholder="Total items (n)" />
+        <mat-icon matSuffix class="suffix-icon">numbers</mat-icon>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline">
+        <mat-label>Enter r</mat-label>
+        <input matInput type="number" [(ngModel)]="r" id="r" (input)="calculate()" placeholder="Chosen items (r)" />
+        <mat-icon matSuffix class="suffix-icon">list</mat-icon>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="calculate()">
+        <mat-icon>calculate</mat-icon>
+        Calculate
+      </button>
+    </div>
+  
+    <div class="result-section" *ngIf="nPr !== null && nCr !== null">
+        
+      <mat-card >
+        <mat-card-header>
+          <mat-icon>check_circle</mat-icon>
+          <mat-card-title>Results</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <section class="result-formula">
+                <p><b>P(n, r) (Permutation):</b> {{ nPr | number:'1.0-2' }}</p>
+                <p><b>C(n, r) (Combination):</b> {{ nCr | number:'1.0-2' }}</p>
+            </section>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  <section class="steps-panel   ">
+      <mat-expansion-panel class="steps-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>lightbulb</mat-icon>
+            View Step-by-Step Solution
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+    
+        <div class="solution-content">
+          <h2>Formula and Steps</h2>
+    
+          <div class="formula-box">
+            <p>P(n, r) = n! / (n-r)! &nbsp; | &nbsp; C(n, r) = P(n, r) / r!</p>
+          </div>
+    
+          <mat-vertical-stepper>
+            <mat-step>
+              <ng-template matStepLabel>Step 1: Compute Factorials</ng-template>
+              <div class="calculation-box">
+                <p>Calculate n!, r!, and (n-r)!.</p>
+                <p>n! = {{ n }}! = {{ nPr !== null && n!== null ? factorialMy(n) : '...' }}</p>
+                <p>r! = {{ r }}! = {{ nCr !== null && r!== null ? factorialMy(r) : '...' }}</p>
+                <p>(n-r)! = ({{ n }}-{{ r }})! = {{ n !== null && r !== null && nPr !== null ? factorialMy(n - r) : '...' }}</p>
+              </div>
+            </mat-step>
+    
+            <mat-step>
+              <ng-template matStepLabel>Step 2: Calculate nPr</ng-template>
+              <div class="calculation-box">
+                <p>P(n, r) = n! / (n-r)!</p>
+                <p>{{ nPr !== null ? 'P(' + n + ', ' + r + ') = ' + nPr : '...' }}</p>
+              </div>
+            </mat-step>
+    
+            <mat-step>
+              <ng-template matStepLabel>Step 3: Calculate nCr</ng-template>
+              <div class="calculation-box">
+                <p>C(n, r) = P(n, r) / r!</p>
+                <p>{{ nCr !== null ? 'C(' + n + ', ' + r + ') = ' + nCr : '...' }}</p>
+              </div>
+            </mat-step>
+          </mat-vertical-stepper>
+        </div>
+      </mat-expansion-panel>
+  </section>
+  </div>
+  

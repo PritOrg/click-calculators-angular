@@ -92,7 +92,7 @@ export class IndexComponent {
         { 
           title: 'Right Triangle Calculator',
           description: 'Solve right triangle problems',
-          link: '/trigo/rihght-triangle',
+          link: '/trigo/right-triangle',
           icon: 'change_history',
           tags: ['Geometry', 'Practical'],
           features: ['Side calculations', 'Angle calculations'],
@@ -114,34 +114,25 @@ export class IndexComponent {
           tags: ['Geometry', 'Shapes'],
           features: ['Area calculation', 'Perimeter calculation'],
           previewImage: 'assets/images/polygon-calc.png'
+        },
+        { 
+          title: 'Weight Converter',
+          description: 'Convert between different weight units',
+          link: '/geometry/weight-converter',
+          icon: 'scale',
+          tags: ['Conversion', 'Utility'],
+          features: ['Multiple units', 'Instant results'],
+          previewImage: 'assets/images/weight-conv.png'
+        },
+        { 
+          title: 'Length Converter',
+          description: 'Convert between different length units',
+          link: '/geometry/length-converter',
+          icon: 'straighten',
+          tags: ['Conversion', 'Utility'],
+          features: ['Multiple units', 'Instant results'],
+          previewImage: 'assets/images/length-conv.png'
         }
-      ]
-    },
-    {
-      id: 'utility',
-      title: 'Utility Calculators',
-      icon: 'build',
-      color: '#FF9800',
-      items: [
-        { 
-          title: 'Table Generator',
-          description: 'Create custom multiplication tables',
-          link: '/table-generator',
-          icon: 'grid_on',
-          tags: ['Education', 'Basic Math'],
-          features: ['Customizable range', 'Printable format'],
-          previewImage: 'assets/images/table-gen.png'
-        },
-        { 
-          title: 'Salary Calculator',
-          description: 'Compute precise salary details',
-          link: '/salary-calculator',
-          icon: 'monetization_on',
-          tags: ['Finance', 'Professional'],
-          features: ['Tax calculation', 'Multiple currencies'],
-          previewImage: 'assets/images/salary-calc.png'
-        },
-        
       ]
     },
     {
@@ -194,23 +185,51 @@ export class IndexComponent {
           tags: ['Conversion', 'Mathematics'],
           features: ['Simplification', 'Fraction conversion'],
           previewImage: 'assets/images/ratio-conv.png'
-        }
-      ]
-    },
-    {
-      id: 'matrices',
-      title: 'Matrix Calculators',
-      icon: 'grid_on',
-      color: '#673AB7',
-      items: [
+        },
         { 
-          title: 'Matrices Calculator',
-          description: 'Perform matrix calculations',
-          link: '/matrices-calculator',
-          icon: 'table_chart',
-          tags: ['Linear Algebra', 'Advanced Math'],
-          features: ['Determinant calculation', 'Multiplication'],
-          previewImage: 'assets/images/matrix-calc.png'
+          title: 'LCM and GCD Calculator',
+          description: 'Calculate LCM and GCD of numbers',
+          link: '/number/lcm-gcd-calculator',
+          icon: 'calculate',
+          tags: ['Mathematics', 'Number Theory'],
+          features: ['Multiple numbers support', 'Step-by-step solution'],
+          previewImage: 'assets/images/lcm-gcd.png'
+        },
+        { 
+          title: 'Number System Converter',
+          description: 'Convert between different number systems',
+          link: '/number/number-system-convertor',
+          icon: 'swap_horiz',
+          tags: ['Conversion', 'Mathematics'],
+          features: ['Binary, Octal, Decimal, Hex', 'Instant results'],
+          previewImage: 'assets/images/number-system.png'
+        },
+        { 
+          title: 'Number System Operations',
+          description: 'Perform operations in different number systems',
+          link: '/number/number-system-operations',
+          icon: 'functions',
+          tags: ['Mathematics', 'Advanced'],
+          features: ['Addition, Subtraction, Multiplication, Division', 'Multiple bases'],
+          previewImage: 'assets/images/number-ops.png'
+        },
+        { 
+          title: 'Permutation and Combination Calculator',
+          description: 'Calculate permutations and combinations',
+          link: '/number/permutation-combination-calc',
+          icon: 'functions',
+          tags: ['Mathematics', 'Probability'],
+          features: ['Step-by-step solution', 'Multiple inputs'],
+          previewImage: 'assets/images/perm-comb.png'
+        },
+        { 
+          title: 'Factorial Calculator',
+          description: 'Calculate factorial of a number',
+          link: '/number/factorial-calculator',
+          icon: 'exclamation',
+          tags: ['Mathematics', 'Basic'],
+          features: ['Large number support', 'Step-by-step solution'],
+          previewImage: 'assets/images/factorial.png'
         }
       ]
     },
@@ -237,6 +256,85 @@ export class IndexComponent {
           tags: ['Health', 'Wellness'],
           features: ['BMI check', 'Weight suggestions'],
           previewImage: 'assets/images/overweight-calc.png'
+        }
+      ]
+    },
+    {
+      id: 'financial',
+      title: 'Financial Calculators',
+      icon: 'attach_money',
+      color: '#FF5722',
+      items: [
+        { 
+          title: 'SIP Calculator',
+          description: 'Calculate Systematic Investment Plan returns',
+          link: '/financial/sip-calculator',
+          icon: 'trending_up',
+          tags: ['Finance', 'Investment'],
+          features: ['Future value calculation', 'Customizable inputs'],
+          previewImage: 'assets/images/sip-calc.png'
+        },
+        { 
+          title: 'Interest Calculator',
+          description: 'Calculate simple and compound interest',
+          link: '/financial/interest-calculator',
+          icon: 'monetization_on',
+          tags: ['Finance', 'Savings'],
+          features: ['Multiple interest types', 'Detailed breakdown'],
+          previewImage: 'assets/images/interest-calc.png'
+        },
+        { 
+          title: 'EMI Calculator',
+          description: 'Calculate Equated Monthly Installments',
+          link: '/financial/emi-calculator',
+          icon: 'credit_card',
+          tags: ['Finance', 'Loans'],
+          features: ['Loan amount calculation', 'Interest rate analysis'],
+          previewImage: 'assets/images/emi-calc.png'
+        },
+        { 
+          title: 'Tax and GST Calculator',
+          description: 'Calculate taxes and GST',
+          link: '/financial/tax-gst-calculator',
+          icon: 'receipt',
+          tags: ['Finance', 'Tax'],
+          features: ['Tax rate calculation', 'GST breakdown'],
+          previewImage: 'assets/images/tax-gst.png'
+        }
+      ]
+    },
+    {
+      id: 'utility',
+      title: 'Utility Calculators',
+      icon: 'build',
+      color: '#FF9800',
+      items: [
+        { 
+          title: 'Table Generator',
+          description: 'Create custom multiplication tables',
+          link: '/table-generator',
+          icon: 'grid_on',
+          tags: ['Education', 'Basic Math'],
+          features: ['Customizable range', 'Printable format'],
+          previewImage: 'assets/images/table-gen.png'
+        },
+        { 
+          title: 'Salary Calculator',
+          description: 'Compute precise salary details',
+          link: '/salary-calculator',
+          icon: 'monetization_on',
+          tags: ['Finance', 'Professional'],
+          features: ['Tax calculation', 'Multiple currencies'],
+          previewImage: 'assets/images/salary-calc.png'
+        },
+        { 
+          title: 'Matrices Calculator',
+          description: 'Perform matrix calculations',
+          link: '/matrices-calculator',
+          icon: 'table_chart',
+          tags: ['Linear Algebra', 'Advanced Math'],
+          features: ['Determinant calculation', 'Multiplication'],
+          previewImage: 'assets/images/matrix-calc.png'
         }
       ]
     }

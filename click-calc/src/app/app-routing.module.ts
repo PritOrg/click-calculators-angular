@@ -29,6 +29,8 @@ import { LengthConverterComponent } from './geometry/length-converter/length-con
 import { LcmGcdCalculatorComponent } from './numbers/lcm-gcd-calculator/lcm-gcd-calculator.component';
 import { NumberSystemConverterComponent } from './numbers/number-system-converter/number-system-converter.component';
 import { NumberSystemOperationsComponent } from './numbers/number-system-operations/number-system-operations.component';
+import { PermutationCombinationCalcComponent } from './numbers/permutation-combination-calc/permutation-combination-calc.component';
+import { FactorialCalculatorComponent } from './numbers/factorial-calculator/factorial-calculator.component';
 
 const routes: Routes = [
   {
@@ -71,6 +73,7 @@ const routes: Routes = [
     path: 'geometry/length-converter',
     component: LengthConverterComponent,
   },
+
   {
     path: 'percentage/add',
     component: AddComponent,
@@ -110,6 +113,14 @@ const routes: Routes = [
   {
     path: 'number/number-system-operations',  
     component: NumberSystemOperationsComponent,
+  },
+  {
+    path: 'number/permutation-combination-calc',  
+    component: PermutationCombinationCalcComponent,
+  },
+  {
+    path: 'number/factorial-calculator',
+    component: FactorialCalculatorComponent,  
   },
   {
     path: 'matrices-calculator',  
